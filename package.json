@@ -4,7 +4,7 @@
   "description": "Aplicativo educacion",
   "main": "index.js",
   "scripts": {
-    "dev":"",
+    "dev":"cross-env NODE_ENV=development electron index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
