@@ -21,5 +21,4 @@ app.on('ready', () => {
     })
     
 win.loadURL(`file://${__dirname}/src/renderer/index.html`)
-
 })

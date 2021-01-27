@@ -4,6 +4,7 @@
   "description": "Aplicativo educacion",
   "main": "index.js",
   "scripts": {
+    "dev":"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,14 @@
   },
   "homepage": "https://github.com/Bladi452/edutec#readme",
   "dependencies": {
-    "electron": "^11.2.1"
+    "caniuse-api": "^3.0.0",
+    "electron": "^11.2.1",
+    "electron-compile": "^6.4.4",
+    "electron-debug": "^3.2.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron-prebuilt-compile": "^8.2.0",
+    "standard": "^16.0.3"
   }
 }
