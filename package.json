@@ -1,0 +1,22 @@
+{
+  "name": "edutec",
+  "version": "1.0.0",
+  "description": "Aplicativo educacion",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bladi452/edutec.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bladi452/edutec/issues"
+  },
+  "homepage": "https://github.com/Bladi452/edutec#readme",
+  "dependencies": {
+    "electron": "^11.2.1"
+  }
+}
