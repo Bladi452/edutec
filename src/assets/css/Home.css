@@ -1,0 +1,55 @@
+#panelR{
+    background-color: #FA9A60;
+}
+    strong{
+    color: #ffffff;
+    font-size:x-large;
+    font-weight: bold;
+   }
+
+   .list-group-item {
+       height: 56.5px;
+   }
+
+   #titulo{
+    font-size: medium;
+}
+
+
+
+
+::placeholder {
+    font-size: 20px;
+  }
+
+
+  #imagen{
+    margin-top: 90px;
+}
+#max{
+    float:right;
+    border: none;
+    background: none;
+  outline:none;
+}
+
+#cerrar{
+    border: none;
+    float:right;
+    background: none;
+  outline:none;
+}
+
+#max{
+    float:right;
+    border: none;
+    background: none;
+  outline:none;
+}
+
+#mini{
+    float:right;
+    border: none;
+    background: none;
+  outline:none;
+}
