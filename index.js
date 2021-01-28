@@ -12,7 +12,8 @@ app.on('ready', () => {
     let win = new BrowserWindow({
         width: 1366,
         height: 768,
-        frame: false
+        frame: false,
+        resizable:false
     })
 
     win.on('closed', () => {
