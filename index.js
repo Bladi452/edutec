@@ -7,8 +7,8 @@ devtools()
 if(process.env.NODE_ENV === 'development'){
 }
 
-console.dir(app)
 app.on('ready', () => {
+    console.dir(app)
     let win = new BrowserWindow({
         width: 1366,
         height: 768,

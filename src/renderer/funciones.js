@@ -6,8 +6,3 @@ function clase()
 {
   location.href="Home.html"
 }
-
-
-
-
-
