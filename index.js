@@ -13,7 +13,7 @@ app.on('ready', () => {
         width: 1366,
         height: 768,
         frame: false,
-        resizable:false,      
+        resizable:false,
         webPreferences: {
             nodeIntegration: true,
         }
