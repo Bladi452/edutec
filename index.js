@@ -2,7 +2,6 @@
 
 import { app, BrowserWindow } from 'electron'
 import devtools from './devtools'
-
 devtools()
 if(process.env.NODE_ENV === 'development'){
 }
