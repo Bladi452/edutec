@@ -1,11 +1,14 @@
-const Sequelize = require('sequelize');
+const mysql = require('promise-mysql');
 
-var db_config = {
-    host:"",
-    user:"",
-    password:"",
-    port:"",
-    database:""
+const conexion = mysql.createConnection({
+    host:'localhost',
+    user: 'root',
+    password: '',
+    database: 'edutec'
+})
+
+function getconexion(){
+    return conexion;
 }
 
-var sequelize = new Sequelize('')
+module.exports ={getconexion}

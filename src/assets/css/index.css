@@ -1,15 +1,15 @@
-    #Iniciar{
-    border-radius: 19px;
-    outline: none;
-    border: 0px;
-    width: 260px;
-    height: 54px;
-    margin-left: 30%;
-    background-color: #FA9A60;
-    color: #ffffff;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 70px;
+    #Ini{
+        border-radius: 19px;
+        outline: none;
+        border: 0px;
+        width: 260px;
+        height: 54px;
+        margin-left: 30%;
+        background-color: #FA9A60;
+        color: #ffffff;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 70px;
     }
 
     #Registrar{
@@ -33,7 +33,7 @@
         height: 45px;
     }
     
-    #contraseña{
+    #contra{
         margin-left: 60px;
         text-align: center;
         width: 80%;

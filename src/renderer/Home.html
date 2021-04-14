@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../assets/css/Home.css">
 <link rel="stylesheet" href="../assets/css/photon.min.css">
 <link rel="stylesheet" href="../assets/css/main.css">
-<script src="funciones.js"></script>
+<script src="Home.js"></script>
 <link rel="stylesheet" href="../assets/css/tabla.css">
 </head>
     
@@ -33,17 +33,11 @@
                         <img src="../assets/imagenes/birrete (1).svg" width="150">
                       </center>
                       </li>
-                      <li class="list-group-item"><div class="media-body">
-                        <center> 
-                        <strong>Inicio</strong>
-                      </div>
-                      </center>
-                      </li>
-  
+                     
                       <li class="list-group-item">
                         <div class="media-body">
                           <center>
-                          <strong>Inscripciones</strong>
+                          <strong>Solicitud</strong>
                         </center>
                         </div>
                       </li>
@@ -56,31 +50,33 @@
                         </div>
                       </li>
   
+                      <li class="list-group-item">
+                        <div class="media-body">
+                          <center>
+                          <strong>Documentos</strong>
+                        </center>
+                        </div>
+                      </li>
+                     
                     </ul>
               </div>
                   <div class="pane">
 
-                    <p id="letrero"> Inicio</p>
+                    <p id="letrero"></p>
 
 <div id="tabla" width="70px" >
                     <table class="styled-table">
                       <thead>
                           <tr>
-                              <th>Name</th>
-                              <th>Points</th>
+                              <th>Codigo Solicitud</th>
+                              <th>Fecha</th>
+                              <th>Grado</th>
+                              <th>Nombre</th>
                           </tr>
                       </thead>
-                      <tbody>
-                          <tr>
-                              <td>Dom</td>
-                              <td>6000</td>
-                          </tr>
-                          <tr class="active-row">
-                              <td>Melissa</td>
-                              <td>5150</td>
-                          </tr>
-                          <!-- and so on... -->
-                      </tbody>
+                    <tbody id="mylist">
+                          <!-- class="active-row" id="Datos" -->
+                     </tbody>
                   </table>
                 </div>
                   </div>
@@ -90,6 +86,6 @@
                 <h1 class="title">Aki Technology</h1>
               </footer>
         </div>
-          
+       
 </body>
 </html>
