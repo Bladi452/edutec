@@ -19,7 +19,6 @@ var id_Escue;
 //Recibe el Id de quien ingreso
 ipcMain.on('envio', (event, id) => {
     Id_Admin = id;
-    idEscu();
 })
 //Creamos la ventana del login
 
@@ -75,6 +74,7 @@ async function validarlogin(obj) {
         if (error) { console.log(error); }
         //Si el usuario es correto abrimos el Home de lo contrario lanzamos una notificacion
         if (results.length > 0) {
+            idEscu();
             createWindowHome();
             winHome.show()
             win.hide()
@@ -107,8 +107,7 @@ async function idEscu() {
             console.log(error)
         } 
         //igualo el lugar 3 del array donde se encuentra el id de la escuela a una variable global
-        id_Escue = results[3].Id_Escuela
-    console.log(id_Escue);
+        id_Escue = results[0].Id_Escuela
     })
 
 }
