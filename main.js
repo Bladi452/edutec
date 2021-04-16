@@ -1,10 +1,18 @@
-const { BrowserWindow, Notification, ipcMain, app, ipcRenderer, } = require('electron');
+const { BrowserWindow, Notification, ipcMain, app, webContents, ipcRenderer, } = require('electron');
+const { devTools } = require('electron-debug');
+const { get } = require('http');
 const path = require('path');
 const { getconexion } = require('./database')
     //Creacion de la ventana que se estara utilizando
 let win;
 let winHome;
+var prueba;
+var id_Escue;
 
+ipcMain.on('envio', (event, id) => {
+    prueba = id;
+    idEscu();
+})
 
 function createWindow() {
     win = new BrowserWindow({
@@ -41,9 +49,12 @@ ipcMain.handle('get', (event) => {
 
 ipcMain.handle('login', (event, obj) => {
     validarlogin(obj);
-    id = { usu } = obj
+    obtener();
 })
 
+function obtener() {
+    win.webContents.send('ping', 'whoooooooh!')
+}
 
 async function validarlogin(obj) {
     const conn = await getconexion();
@@ -54,7 +65,6 @@ async function validarlogin(obj) {
         if (results.length > 0) {
             createWindowHome();
             winHome.show()
-            win.hide()
         } else {
             new Notification({
                 title: "login",
@@ -64,15 +74,11 @@ async function validarlogin(obj) {
     })
 }
 
-async function InsertEstu() {
 
-
-}
-
-async function getProducts(id) {
+async function getProducts() {
     const con = await getconexion();
-    const sql = 'SELECT Solicitud.Id_Solicitud, Solicitud.Fecha, Solicitud.Estatus, Curso.Grado, Estudiantes.Nombre FROM Solicitud INNER JOIN Curso ON Solicitud.Id_Curso = Curso.ID_Curso JOIN Estudiantes ON Solicitud.Id_Escuelas = Solicitud.Id_Solicitud'
-    await con.query(sql, (error, results, fields) => {
+    const sql = 'SELECT Solicitud.Id_Solicitud, Solicitud.Fecha, Solicitud.Estatus, Estudiantes.Matricula, Curso.Grado, Escuelas.Nombre FROM Solicitud INNER JOIN Curso ON Solicitud.Id_Curso = Curso.ID_Curso INNER JOIN Estudiantes ON Estudiantes.Id_Estudiantes = Solicitud.Id_Estudiantes INNER JOIN Escuelas ON Solicitud.Id_Escuelas = Escuelas.Id_Escuelas WHERE Solicitud.Id_Escuelas = ?'
+    await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
         }
@@ -80,9 +86,19 @@ async function getProducts(id) {
     })
 }
 
-module.exports = {
-    createWindow,
+async function idEscu() {
+    const con = await getconexion();
+    const sql = 'SELECT * FROM `Administrativos` WHERE Id_Administrativo = ?'
+    await con.query(sql, [prueba], (error, results, fields) => {
+        if (error) {
+            console.log(error)
+        } 
+        id_Escue = results[0].Id_Escuela
+    console.log(id_Escue);       
+    })
+
 }
+
 module.exports = {
-    createWindow,
+    createWindow
 }

@@ -1,29 +1,18 @@
-const { ipcRenderer, } = require('electron');
+const { ipcRenderer } = require('electron');
 let mylist;
 
-var idHome;
 
 document.addEventListener("DOMContentLoaded", function() {
     mylist = document.getElementById("mylist")
     Letrero = document.getElementById("letrero")
-
-    ipcRenderer.on('idnew', function(event, id) {
-        id = idHome
-        console.log(id)
-    })
-
     renderGetProducts()
 })
 
 
-
-function renderGetProducts() {
-
+async function renderGetProducts() {
+    await ipcRenderer.invoke('get')
 }
 
-
-//Letrero.innerHTML = template2;
-//})
 
 
 ipcRenderer.on('products', (event, results) => {
@@ -33,8 +22,9 @@ ipcRenderer.on('products', (event, results) => {
         template += ` 
     <tr>
     <td>${element.Id_Solicitud}</td>
-          <td>${element.Fecha}</td>          
+          <td>${element.Fecha}</td>       
           <td>${element.Grado}</td>
+          <td>${element.Matricula}</td>
           <td>${element.Nombre}</td>          
           <tr>
           <button id = "Cancelar"></button>
