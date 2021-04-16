@@ -15,7 +15,7 @@ async function renderGetProducts() {
 
 
 
-ipcRenderer.on('products', (event, results) => {
+ipcRenderer.on('solicitudes', (event, results) => {
     let template = ""
     const list = results
     list.forEach(element => {

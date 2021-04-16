@@ -1,18 +1,27 @@
+//Llamar modulos de electron
+
 const { BrowserWindow, Notification, ipcMain, app, webContents, ipcRenderer, } = require('electron');
-const { devTools } = require('electron-debug');
-const { get } = require('http');
-const path = require('path');
+
+//Se llama la conexion a la base de datos y se iguala a una constante
+
 const { getconexion } = require('./database')
-    //Creacion de la ventana que se estara utilizando
+
+//Se nombran las variables que se estran usando durante el proyecto 
 let win;
 let winHome;
-var prueba;
+
+//Se utiliza para tomar el campo Id que proviene desde el login.js e igualarlo a una variable global
+var Id_Admin;
+
+//Lo utilizamos para igualar el campo de la base de datos Id_Escuela que esta relacionado con el administrativo que inicio sesion
 var id_Escue;
 
+//Recibe el Id de quien ingreso
 ipcMain.on('envio', (event, id) => {
-    prueba = id;
+    Id_Admin = id;
     idEscu();
 })
+//Creamos la ventana del login
 
 function createWindow() {
     win = new BrowserWindow({
@@ -25,8 +34,10 @@ function createWindow() {
             contextIsolation: false,
         }
     })
-    win.loadFile('src/renderer/index.html')
+    win.loadFile('src/renderer/Login.html')
 }
+
+//Creamos la ventana del Home
 
 function createWindowHome() {
     winHome = new BrowserWindow({
@@ -40,65 +51,68 @@ function createWindowHome() {
         }
     })
     winHome.loadFile('src/renderer/Home.html')
-
 }
+
+//Se utiliza para enviar los datos de la funcion getSolicitud al Home
 ipcMain.handle('get', (event) => {
-    getProducts()
-
+    GetSolicitud()
 })
-
+//Lo utilizamos para llamar la funcion que valida el login y pasarle los datos ingresados a validar
 ipcMain.handle('login', (event, obj) => {
     validarlogin(obj);
-    obtener();
 })
 
-function obtener() {
-    win.webContents.send('ping', 'whoooooooh!')
-}
-
+//Iniciamos la funcion pasandole el objeto que contiene los datos a validar
 async function validarlogin(obj) {
+    //Llamamos la conexion a base de datos y la encapsulamos a una constante
     const conn = await getconexion();
+    //Separamos los datos de usuario y contraseña del array obj que era la variable que los contenia
     const pass = { usu, con } = obj;
+    //Igualamos el Query de base de datos a una variable
     const sql = "SELECT Usuario_Administrativo.Id_Administrativo, Usuario_Administrativo.Contraseña , Administrativos.Nombre FROM Usuario_Administrativo INNER JOIN Administrativos ON Usuario_Administrativo.Id_Administrativo = ? AND Usuario_Administrativo.Contraseña=?"
+    //Abrimos la conexion, pasamos el Query y validamos el usuario
     await conn.query(sql, [usu, con], (error, results, fields) => {
         if (error) { console.log(error); }
+        //Si el usuario es correto abrimos el Home de lo contrario lanzamos una notificacion
         if (results.length > 0) {
             createWindowHome();
             winHome.show()
+            win.hide()
         } else {
             new Notification({
-                title: "login",
-                body: 'El usuario o contraseña son invalidos'
+                title: "EduAtlas",
+                body: 'El usuario o contraseña no son validos'
             }).show()
         }
     })
 }
 
-
-async function getProducts() {
+//Esta funcion pasa los datos de las solicitudes a cada escuela
+async function GetSolicitud() {
     const con = await getconexion();
     const sql = 'SELECT Solicitud.Id_Solicitud, Solicitud.Fecha, Solicitud.Estatus, Estudiantes.Matricula, Curso.Grado, Escuelas.Nombre FROM Solicitud INNER JOIN Curso ON Solicitud.Id_Curso = Curso.ID_Curso INNER JOIN Estudiantes ON Estudiantes.Id_Estudiantes = Solicitud.Id_Estudiantes INNER JOIN Escuelas ON Solicitud.Id_Escuelas = Escuelas.Id_Escuelas WHERE Solicitud.Id_Escuelas = ?'
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
         }
-        winHome.webContents.send('products', results)
+        winHome.webContents.send('solicitudes', results)
     })
 }
-
+//Definimos la relacion entre el administrativo que inicio sesion y la escuela a la que pertenece
 async function idEscu() {
     const con = await getconexion();
     const sql = 'SELECT * FROM `Administrativos` WHERE Id_Administrativo = ?'
-    await con.query(sql, [prueba], (error, results, fields) => {
+    await con.query(sql, [Id_Admin], (error, results, fields) => {
         if (error) {
             console.log(error)
         } 
-        id_Escue = results[0].Id_Escuela
-    console.log(id_Escue);       
+        //igualo el lugar 3 del array donde se encuentra el id de la escuela a una variable global
+        id_Escue = results[3].Id_Escuela
+    console.log(id_Escue);
     })
 
 }
-
+//Exportamos la funcion que crea la primera ventana al index 
 module.exports = {
     createWindow
 }
