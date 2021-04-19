@@ -58,6 +58,10 @@ ipcMain.handle('get', (event) => {
     GetSolicitud()
 })
 
+ipcMain.handle('getAceptar', (event) => {
+    GetSolicitudAcep()
+})
+
 ipcMain.handle("Denegar_canal",( event,obj ) => {
     Denegar_Solicitud(obj)
 });
@@ -108,6 +112,18 @@ async function GetSolicitud() {
         winHome.webContents.send('solicitudes', results)
     })
 }
+
+async function GetSolicitudAcep(){
+    const con = await getconexion();
+    const sql = 'SELECT Solicitud.Id_Solicitud, Solicitud.Fecha, Solicitud.Estatus, Estudiantes.Matricula, Curso.Grado, Escuelas.Nombre FROM Solicitud INNER JOIN Curso ON Solicitud.Id_Curso = Curso.ID_Curso INNER JOIN Estudiantes ON Estudiantes.Id_Estudiantes = Solicitud.Id_Estudiantes INNER JOIN Escuelas ON Solicitud.Id_Escuelas = Escuelas.Id_Escuelas WHERE Solicitud.Id_Escuelas = ? AND Solicitud.Estatus = "Aceptado"'
+    await con.query(sql, [id_Escue], (error, results, fields) => {
+        if (error) {
+            console.log(error);
+        }
+        winHome.webContents.send('solicitudesNew', results)
+    })
+}
+
 
 async function Denegar_Solicitud(obj){
 const con = await getconexion();
