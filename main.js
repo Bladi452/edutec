@@ -62,7 +62,7 @@ ipcMain.handle('getAceptar', (event) => {
     GetSolicitudAcep()
 })
 
-ipcMain.handle('getAceptar', (event) => {
+ipcMain.handle('getDene', (event) => {
     GetSolicitudDene()
 })
 
@@ -148,6 +148,8 @@ con.query(sql, [obj], (error, results, fields)=>{
         console.log(error)
     }
     GetSolicitud()
+    GetSolicitudDene()
+    GetSolicitudAcep()
 });
 }
 
@@ -157,8 +159,10 @@ const sql = 'UPDATE Solicitud SET Estatus = "Aceptado" WHERE Solicitud.Id_Solici
 con.query(sql, [obj], (error, results, fields) =>{
 if(error){
     console.log(error)
-}
+}    
 GetSolicitud()
+GetSolicitudDene()
+GetSolicitudAcep()
 })
 }
 

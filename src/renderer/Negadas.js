@@ -25,6 +25,7 @@ ipcRenderer.on('solicitudesDene', (event, results) => {
           <td>${element.Grado}</td>
           <td>${element.Matricula}</td>
           <td>${element.Nombre}</td> 
+          <td>${element.Estatus}
 <td>   <button id = "Aceptar" 
       onclick="ValidarSol('${element.Id_Solicitud}')">✓</button>
 </td>
