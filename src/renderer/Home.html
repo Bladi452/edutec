@@ -19,7 +19,7 @@
             <p id="titulo" class="title" style="color:#4A4A4A">
                 <b> Edutec </b>
 
-                <button id="mini"><img src="../assets/imagenes/cerrar.png" width="20px" onclick="closed();"></button>
+                <button id="mini"><img src="../assets/imagenes/cerrar.png" width="20px"></button>
             </p>
 
         </header>
@@ -35,7 +35,7 @@
                             </center>
                         </li>
 
-                        <li class="list-group-item">
+                        <li class="list-group-item" onclick="">
                             <div class="media-body">
                                 <center>
                                     <strong>Solicitud</strong>
@@ -63,10 +63,12 @@
                 </div>
                 <div class="pane">
 
-                    <p id="letrero"></p>
+                    <p id="letrero">
+                        <b>Solicitudes</b>
+                    </p>
 
                     <div id="tabla" width="70px">
-                        <table class="styled-table">
+                        <table class="styled-table" >
                             <thead>
                                 <tr>
                                     <th>Codigo Solicitud</th>
@@ -74,6 +76,7 @@
                                     <th>Grado</th>
                                     <th>Matricula</th>
                                     <th>Escuela</th>
+                                    <th>Decision</th>
                                 </tr>
                             </thead>
                             <tbody id="mylist">
@@ -85,7 +88,7 @@
             </div>
         </div>
         <footer class="toolbar toolbar-footer">
-            <h1 class="title">Aki Technology</h1>
+            <h1 class="title">Tecno Diaz</h1>
         </footer>
     </div>
 

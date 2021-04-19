@@ -16,20 +16,25 @@
 }
   #Cancelar{
   margin-top: 1px;
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background-color: #F44336;
-    
+ border: none ; 
+ color: white;
+ font-size: 13px;
 }
 
   #Aceptar{
-    margin-left: 30px;
+    margin-left: 18px;
 margin-top: 1px;
-width: 20px;
-height: 20px;
-radius: 50%;
-background-color: #BDECB6 ;
+width: 25px;
+height: 25px;
+border-radius: 50%;
+background-color: #08D5B9 ;
+border: none;
+color: white;
+font-size: 13px;
 }
 
 #letrero{

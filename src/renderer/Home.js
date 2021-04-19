@@ -1,10 +1,12 @@
 const { ipcRenderer } = require('electron');
+let btnCancelar;
+let btnAceptar;
 let mylist;
-
 
 document.addEventListener("DOMContentLoaded", function() {
     mylist = document.getElementById("mylist")
     Letrero = document.getElementById("letrero")
+    
     renderGetProducts()
 })
 
@@ -12,8 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
 async function renderGetProducts() {
     await ipcRenderer.invoke('get')
 }
-
-
 
 ipcRenderer.on('solicitudes', (event, results) => {
     let template = ""
@@ -26,11 +26,20 @@ ipcRenderer.on('solicitudes', (event, results) => {
           <td>${element.Grado}</td>
           <td>${element.Matricula}</td>
           <td>${element.Nombre}</td>          
+<td>  <button id = "Cancelar" onclick="DenegarSol()" value = "${element.Id_Solicitud}">x</button>
+      <button id = "Aceptar" value = "${element.Id_Solicitud}">✓</button>
+</td>
           <tr>
-          <button id = "Cancelar"></button>
-          <button id = "Aceptar"></button>
     `
     });
 
     mylist.innerHTML = template;
 })
+
+
+async function DenegarSol(e) {
+prueba = e.value
+const id_denegar = {Id_Solicitud: parseInt(prueba)}
+console.log(id_denegar)
+await  ipcRenderer.invoke("Denegar_canal", id_denegar)
+}

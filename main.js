@@ -1,6 +1,6 @@
 //Llamar modulos de electron
 
-const { BrowserWindow, Notification, ipcMain, app, webContents, ipcRenderer, } = require('electron');
+const { BrowserWindow, Notification, ipcMain } = require('electron');
 
 //Se llama la conexion a la base de datos y se iguala a una constante
 
@@ -38,6 +38,7 @@ function createWindow() {
 
 //Creamos la ventana del Home
 
+
 function createWindowHome() {
     winHome = new BrowserWindow({
         width: 1336,
@@ -56,6 +57,11 @@ function createWindowHome() {
 ipcMain.handle('get', (event) => {
     GetSolicitud()
 })
+
+ipcMain.handle("Denegar_canal",( event, id_denegar) => {
+    Denegar_Solicitud(id_denegar)
+});
+
 //Lo utilizamos para llamar la funcion que valida el login y pasarle los datos ingresados a validar
 ipcMain.handle('login', (event, obj) => {
     validarlogin(obj);
@@ -85,12 +91,12 @@ async function validarlogin(obj) {
             }).show()
         }
     })
-}
+} 
 
 //Esta funcion pasa los datos de las solicitudes a cada escuela
 async function GetSolicitud() {
     const con = await getconexion();
-    const sql = 'SELECT Solicitud.Id_Solicitud, Solicitud.Fecha, Solicitud.Estatus, Estudiantes.Matricula, Curso.Grado, Escuelas.Nombre FROM Solicitud INNER JOIN Curso ON Solicitud.Id_Curso = Curso.ID_Curso INNER JOIN Estudiantes ON Estudiantes.Id_Estudiantes = Solicitud.Id_Estudiantes INNER JOIN Escuelas ON Solicitud.Id_Escuelas = Escuelas.Id_Escuelas WHERE Solicitud.Id_Escuelas = ?'
+    const sql = 'SELECT Solicitud.Id_Solicitud, Solicitud.Fecha, Solicitud.Estatus, Estudiantes.Matricula, Curso.Grado, Escuelas.Nombre FROM Solicitud INNER JOIN Curso ON Solicitud.Id_Curso = Curso.ID_Curso INNER JOIN Estudiantes ON Estudiantes.Id_Estudiantes = Solicitud.Id_Estudiantes INNER JOIN Escuelas ON Solicitud.Id_Escuelas = Escuelas.Id_Escuelas WHERE Solicitud.Id_Escuelas = ? AND Solicitud.Estatus = "Vacio"'
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
@@ -98,6 +104,19 @@ async function GetSolicitud() {
         winHome.webContents.send('solicitudes', results)
     })
 }
+
+async function Denegar_Solicitud(id_denegar){
+const con = await getconexion();
+const id = {Id_Solicitud} = id_denegar
+const sql = 'UPDATE Solicitud SET Estatus = "Denegado" WHERE Solicitud.Id_Solicitud=?'
+con.query(sql, [id], (error, results, fields)=>{
+    if(error){
+        console.log(error)
+    }
+    GetSolicitud()
+});
+}
+
 //Definimos la relacion entre el administrativo que inicio sesion y la escuela a la que pertenece
 async function idEscu() {
     const con = await getconexion();
@@ -105,8 +124,8 @@ async function idEscu() {
     await con.query(sql, [Id_Admin], (error, results, fields) => {
         if (error) {
             console.log(error)
-        } 
-        //igualo el lugar 3 del array donde se encuentra el id de la escuela a una variable global
+        }
+        //igualo el lugar 0 del array donde se encuentra el id de la escuela a una variable global
         id_Escue = results[0].Id_Escuela
     })
 
