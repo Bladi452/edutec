@@ -1,8 +1,8 @@
-#tabla{
- margin-left: 50px;
- margin-top: 5px;
- margin-right: 50px;
- margin-bottom: 10px;
+#tabla {
+    margin-left: 50px;
+    margin-top: 10px;
+    margin-right: 50px;
+    margin-bottom: 10px;
 }
 
 .styled-table {
@@ -25,9 +25,10 @@
 .styled-table th,
 .styled-table td {
     padding: 12px 15px;
-text-align: center;
-font-weight: bold;
+    text-align: center;
+    font-weight: bold;
 }
+
 .styled-table tbody tr {
     border-bottom: 1px solid #ffffff;
 }

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../assets/css/Home.css">
+    <link rel="stylesheet" href="../assets/css/photon.min.css">
+    <link rel="stylesheet" href="../assets/css/main.css">
+    <link rel="stylesheet" href="../assets/css/tabla.css">
+    <link rel="stylesheet" href="../assets/css/Events.css" </head>
+
+    <body>
+        <!--Ventana-->
+        <div class="window">
+            <header class="toolbar toolbar-header">
+                <p id="titulo" class="title" style="color:#4A4A4A">
+                    <b> EduAtlas </b>
+
+                    <button id="mini"><img src="../assets/imagenes/cerrar.png" width="20px" onclick="closed();"></button>
+                </p>
+
+            </header>
+
+
+            <!--Contenido de la pagina-->
+
+            <div class="window-content">
+                <div class="pane-group">
+                    <div id="panelR" class="pane-one-fourth sidebar">
+                        <ul class="list-group">
+                            <li class="list-group-header">
+                                <center>
+                                    <img src="../assets/imagenes/birrete (1).svg" width="150">
+                                </center>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="media-body">
+                                    <center>
+                                        <strong>Solicitud</strong>
+                                    </center>
+                                </div>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="body">
+                                    <center>
+                                        <strong>Eventos</strong>
+                                    </center>
+                                </div>
+                            </li>
+
+                            <li class="list-group-item">
+                                <div class="media-body">
+                                    <center>
+                                        <strong>Documentos</strong>
+                                    </center>
+                                </div>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <div class="pane">
+
+                        <a href="Solicitudes.html">
+                            <div class="tab-group">
+                                <div class="tab-item">
+                                    <span class="icon icon-cancel icon-close-tab"></span> Completadas
+                                </div>
+                        </a>
+                        <a href="Home.html">
+                            <div class="tab-item active">
+                                <span class="icon icon-cancel icon-close-tab"></span> Solicitudes pendientes
+                            </div>
+                        </a>
+
+                        </div>
+                        <p id="letrero">
+                            <b>Completadas</b>
+                        </p>
+                        <div id="tabla" width="70px">
+                            <table class="styled-table">
+                                <thead>
+                                    <tr>
+                                        <th>Codigo Solicitud</th>
+                                        <th>Fecha</th>
+                                        <th>Grado</th>
+                                        <th>Matricula</th>
+                                        <th>Escuela</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="mylist">
+                                    <!-- class="active-row" id="Datos" -->
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="toolbar toolbar-footer">
+            <h1 class="title">Tecno Diaz</h1>
+        </footer>
+
+        </div>
+
+    </body>
+
+</html>
