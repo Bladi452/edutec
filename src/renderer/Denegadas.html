@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="../assets/css/Home.css">
     <link rel="stylesheet" href="../assets/css/photon.min.css">
     <link rel="stylesheet" href="../assets/css/main.css">
-    <script src="Home.js"></script>
     <link rel="stylesheet" href="../assets/css/tabla.css">
+    <link rel="stylesheet" href="../assets/css/Events.css">
+    <script src="Solicitudes.js"></script>
 </head>
 
 <body>
@@ -17,12 +18,14 @@
     <div class="window">
         <header class="toolbar toolbar-header">
             <p id="titulo" class="title" style="color:#4A4A4A">
-                <b> Edutec </b>
+                <b> EduAtlas </b>
 
-                <button id="mini"><img src="../assets/imagenes/cerrar.png" width="20px"></button>
+                <button id="mini"><img src="../assets/imagenes/cerrar.png" width="20px" onclick="closed();"></button>
             </p>
 
         </header>
+
+
         <!--Contenido de la pagina-->
 
         <div class="window-content">
@@ -35,7 +38,7 @@
                             </center>
                         </li>
 
-                        <li class="list-group-item" onclick="">
+                        <li class="list-group-item">
                             <div class="media-body">
                                 <center>
                                     <strong>Solicitud</strong>
@@ -61,6 +64,7 @@
 
                     </ul>
                 </div>
+
                 <div class="pane">
 
                     <a href="Solicitudes.html">
@@ -81,7 +85,7 @@
                     </a>
                     </div>
                     <p id="letrero">
-                        <b>Solicitudes pendientes </b>
+                        <b>Denegadas</b>
                     </p>
                     <div id="tabla" width="70px">
                         <table class="styled-table">
@@ -92,7 +96,8 @@
                                     <th>Grado</th>
                                     <th>Matricula</th>
                                     <th>Escuela</th>
-                                    <th>Decision</th>
+                                    <th>Status</th>
+                                    <th>Aprobar</th>
                                 </tr>
                             </thead>
                             <tbody id="mylist">
@@ -100,12 +105,18 @@
                             </tbody>
                         </table>
                     </div>
+
+
+
                 </div>
             </div>
         </div>
-        <footer class="toolbar toolbar-footer">
-            <h1 class="title">Tecno Diaz</h1>
-        </footer>
+    </div>
+
+    <footer class="toolbar toolbar-footer">
+        <h1 class="title">Tecno Diaz</h1>
+    </footer>
+
     </div>
 
 </body>
