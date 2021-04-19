@@ -58,13 +58,17 @@ ipcMain.handle('get', (event) => {
     GetSolicitud()
 })
 
-ipcMain.handle("Denegar_canal",( event, id_denegar) => {
-    Denegar_Solicitud(id_denegar)
+ipcMain.handle("Denegar_canal",( event,obj ) => {
+    Denegar_Solicitud(obj)
 });
 
 //Lo utilizamos para llamar la funcion que valida el login y pasarle los datos ingresados a validar
 ipcMain.handle('login', (event, obj) => {
     validarlogin(obj);
+})
+
+ipcMain.handle("Aceptar_Canal", (event ,obj)=>{
+    Aceptar_Solicitud(obj)
 })
 
 //Iniciamos la funcion pasandole el objeto que contiene los datos a validar
@@ -105,16 +109,27 @@ async function GetSolicitud() {
     })
 }
 
-async function Denegar_Solicitud(id_denegar){
+async function Denegar_Solicitud(obj){
 const con = await getconexion();
-const id = {Id_Solicitud} = id_denegar
+const pass = {Id_Solicitud} = obj
 const sql = 'UPDATE Solicitud SET Estatus = "Denegado" WHERE Solicitud.Id_Solicitud=?'
-con.query(sql, [id], (error, results, fields)=>{
+con.query(sql, [obj], (error, results, fields)=>{
     if(error){
         console.log(error)
     }
     GetSolicitud()
 });
+}
+
+async function Aceptar_Solicitud (obj){
+const con = await getconexion();
+const sql = 'UPDATE Solicitud SET Estatus = "Aceptado" WHERE Solicitud.Id_Solicitud=?'
+con.query(sql, [obj], (error, results, fields) =>{
+if(error){
+    console.log(error)
+}
+GetSolicitud()
+})
 }
 
 //Definimos la relacion entre el administrativo que inicio sesion y la escuela a la que pertenece
