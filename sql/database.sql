@@ -70,6 +70,9 @@ create table Usuario_Administrativo(
     FOREIGN KEY (Id_Administrativo) REFERENCES Administrativos(Id_Administrativo)
 )
 
+create table Eventos(
+    Id_Eventos
+)
 
 select * from Estudiantes;
 select * from Inscripcion;

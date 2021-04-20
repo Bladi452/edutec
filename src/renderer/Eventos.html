@@ -13,104 +13,105 @@
     <script src="menuFun.js"></script>
 </head>
 
-    <body>
-        <!--Ventana-->
-        <div class="window">
-            <header class="toolbar toolbar-header">
-                <p id="titulo" class="title" style="color:#4A4A4A">
-                    <b> EduAtlas </b>
+<body>
+    <!--Ventana-->
+    <div class="window">
+        <header class="toolbar toolbar-header">
+            <p id="titulo" class="title" style="color:#4A4A4A">
+                <b> EduAtlas </b>
 
-                    <button id="mini"><img src="../assets/imagenes/cerrar.png" width="20px" onclick="closed();"></button>
-                </p>
+                <button id="mini"><img src="../assets/imagenes/cerrar.png" width="20px" onclick="closed();"></button>
+            </p>
 
-            </header>
+        </header>
 
 
-            <!--Contenido de la pagina-->
+        <!--Contenido de la pagina-->
 
-            <div class="window-content">
-                <div class="pane-group">
-                    <div id="panelR" class="pane-one-fourth sidebar">
-                        <ul class="list-group">
-                            <li class="list-group-header">
+        <div class="window-content">
+            <div class="pane-group">
+                <div id="panelR" class="pane-one-fourth sidebar">
+                    <ul class="list-group">
+                        <li class="list-group-header">
+                            <center>
+                                <img src="../assets/imagenes/birrete (1).svg" width="150">
+                            </center>
+                        </li>
+
+                        <li class="list-group-item" onclick="Solicitud()">
+                            <div class="media-body">
                                 <center>
-                                    <img src="../assets/imagenes/birrete (1).svg" width="150">
+                                    <strong>Solicitud</strong>
                                 </center>
-                            </li>
-
-                            <li class="list-group-item" onclick="Solicitud()">
-                                <div class="media-body">
-                                    <center>
-                                        <strong>Solicitud</strong>
-                                    </center>
-                                </div>
-                            </li>
-    
-                            <li class="list-group-item" onclick="eventos()">
-                                <div class="body">
-                                    <center>
-                                        <strong>Eventos</strong>
-                                    </center>
-                                </div>
-                            </li>
-    
-
-                            <li class="list-group-item">
-                                <div class="media-body">
-                                    <center>
-                                        <strong>Documentos</strong>
-                                    </center>
-                                </div>
-                            </li>
-
-                        </ul>
-                    </div>
-
-                    <div class="pane">
-
-                            <div class="tab-group" >
-                                <div class="tab-item" onclick="Eventos()">
-                                    <span class="icon icon-cancel icon-close-tab"></span> Eventos
-                                </div>
-                        
-                                <div class="tab-item active" onclick="CreaEven()">
-                                <span class="icon icon-cancel icon-close-tab"></span> Crear evento
                             </div>
-                        
+                        </li>
+
+                        <li class="list-group-item" onclick="eventos()">
+                            <div class="body">
+                                <center>
+                                    <strong>Eventos</strong>
+                                </center>
+                            </div>
+                        </li>
+
+
+                        <li class="list-group-item" onclick="Docs()">
+                            <div class="media-body">
+                                <center>
+                                    <strong>Documentos</strong>
+                                </center>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="pane">
+
+                    <div class="tab-group">
+                        <div class="tab-item" onclick="Eventos()">
+                            <span class="icon icon-cancel icon-close-tab"></span> Eventos
                         </div>
-                        <p id="letrero">
-                            <b>Eventos</b>
-                        </p>
-                        <div id="tabla" width="70px">
-                            <table class="styled-table">
-                                <thead>
-                                    <tr>
-                                        <th>Id del Evento</th>
-                                        <th>Nombre</th>
-                                        <th>Fecha de inicio</th>
-                                        <th>Fin del evento</th>
-                                        <th>Descripción</th>
 
-                                    </tr>
-                                </thead>
-                                <tbody id="mylist">
-                                    <!-- class="active-row" id="Datos" -->
-                                </tbody>
-                            </table>
-
-
-
+                        <div class="tab-item active" onclick="CreaEven()">
+                            <span class="icon icon-cancel icon-close-tab"></span> Crear evento
                         </div>
+
+                    </div>
+                    <p id="letrero">
+                        <b>Eventos</b>
+                    </p>
+                    <div id="tabla" width="70px">
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+
+                                    <th>Id del Evento</th>
+                                    <th>Nombre</th>
+                                    <th>Fecha de inicio</th>
+                                    <th>Fin del evento</th>
+                                    <th>Descripción</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="mylist">
+                                <!-- class="active-row" id="Datos" -->
+                            </tbody>
+                        </table>
+
+
+
                     </div>
                 </div>
             </div>
-
-            <footer class="toolbar toolbar-footer">
-                <h1 class="title">Tecno Diaz</h1>
-            </footer>
-
         </div>
 
-    </body>
+        <footer class="toolbar toolbar-footer">
+            <h1 class="title">Tecno Diaz</h1>
+        </footer>
+
+    </div>
+
+</body>
 
 </html>

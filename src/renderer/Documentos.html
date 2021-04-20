@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="../assets/css/main.css">
     <link rel="stylesheet" href="../assets/css/tabla.css">
     <link rel="stylesheet" href="../assets/css/Events.css">
-    <script src="Solicitudes.js"></script>
     <script src="menuFun.js"></script>
 </head>
 
@@ -38,6 +37,7 @@
                                 <img src="../assets/imagenes/birrete (1).svg" width="150">
                             </center>
                         </li>
+
                         <li class="list-group-item" onclick="Solicitud()">
                             <div class="media-body">
                                 <center>
@@ -68,52 +68,37 @@
 
                 <div class="pane">
 
-                    <div class="tab-group">
-                        <div class="tab-item" onclick="acep()">
-                            <span class="icon icon-cancel icon-close-tab"></span> Aceptadas
-                        </div>
-
-                        <div class="tab-item active" onclick="pen()">
-                            <span class="icon icon-cancel icon-close-tab"></span> Solicitudes pendientes
-                        </div>
-
-                        <div class="tab-item" onclick="dene()">
-                            <span class="icon icon-cancel icon-close-tab"></span> Denegadas
-                        </div>
-                    </div>
-
                     <p id="letrero">
-                        <b>Completadas</b>
+                        <b>Documentos</b>
                     </p>
                     <div id="tabla" width="70px">
                         <table class="styled-table">
                             <thead>
                                 <tr>
-                                    <th>Codigo Solicitud</th>
-                                    <th>Fecha</th>
-                                    <th>Grado</th>
-                                    <th>Matricula</th>
-                                    <th>Escuela</th>
-                                    <th>Status</th>
-                                    <th>Denegar</th>
+
+                                    <th>Id </th>
+                                    <th>Nombre</th>
+                                    <th>Documento</th>
+                                    <th>Estado</th>
+
+
                                 </tr>
                             </thead>
                             <tbody id="mylist">
                                 <!-- class="active-row" id="Datos" -->
                             </tbody>
                         </table>
+
+
+
                     </div>
-
-
-
                 </div>
             </div>
         </div>
-    </div>
 
-    <footer class="toolbar toolbar-footer">
-        <h1 class="title">Tecno Diaz</h1>
-    </footer>
+        <footer class="toolbar toolbar-footer">
+            <h1 class="title">Tecno Diaz</h1>
+        </footer>
 
     </div>
 
