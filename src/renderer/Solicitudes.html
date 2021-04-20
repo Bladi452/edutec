@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../assets/css/tabla.css">
     <link rel="stylesheet" href="../assets/css/Events.css">
     <script src="Solicitudes.js"></script>
+    <script src="menuFun.js"></script>
 </head>
 
 <body>
@@ -37,8 +38,7 @@
                                 <img src="../assets/imagenes/birrete (1).svg" width="150">
                             </center>
                         </li>
-
-                        <li class="list-group-item">
+                        <li class="list-group-item" onclick="Solicitud()">
                             <div class="media-body">
                                 <center>
                                     <strong>Solicitud</strong>
@@ -46,13 +46,14 @@
                             </div>
                         </li>
 
-                        <li class="list-group-item">
+                        <li class="list-group-item" onclick="eventos()">
                             <div class="body">
                                 <center>
                                     <strong>Eventos</strong>
                                 </center>
                             </div>
                         </li>
+
 
                         <li class="list-group-item">
                             <div class="media-body">
@@ -67,23 +68,20 @@
 
                 <div class="pane">
 
-                    <a href="Solicitudes.html">
-                        <div class="tab-group">
-                            <div class="tab-item">
-                                <span class="icon icon-cancel icon-close-tab"></span> Completadas
-                            </div>
-                    </a>
-                    <a href="Home.html">
-                        <div class="tab-item active">
-                            <span class="icon icon-cancel icon-close-tab"></span> Solicitudes pendientes
+                    <div class="tab-group" >
+                        <div class="tab-item" onclick="acep()">
+                            <span class="icon icon-cancel icon-close-tab"></span> Aceptadas
                         </div>
-                    </a>
-                    <a href="Denegadas.html">
-                        <div class="tab-item">
-                            <span class="icon icon-cancel icon-close-tab"></span> Denegadas
-                        </div>
-                    </a>
+   
+                        <div class="tab-item active" onclick="pen()">
+                        <span class="icon icon-cancel icon-close-tab"></span> Solicitudes pendientes
                     </div>
+
+                    <div class="tab-item" onclick="dene()">
+                        <span class="icon icon-cancel icon-close-tab" ></span> Denegadas
+                    </div>
+                </div>
+
                     <p id="letrero">
                         <b>Completadas</b>
                     </p>

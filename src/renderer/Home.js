@@ -50,3 +50,13 @@ if(response){
 }
  return;
 }
+
+function acep(){
+    location.href="Solicitudes.html"
+}
+function dene(){
+    location.href="Denegadas.html"
+}
+function pen(){
+    location.href="Home.html"
+}
