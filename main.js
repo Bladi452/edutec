@@ -18,9 +18,9 @@ var id_Escue;
 
 //Recibe el Id de quien ingreso
 ipcMain.on('envio', (event, id) => {
-    Id_Admin = id;
-})
-//Creamos la ventana del login
+        Id_Admin = id;
+    })
+    //Creamos la ventana del login
 
 function createWindow() {
     win = new BrowserWindow({
@@ -66,7 +66,7 @@ ipcMain.handle('getDene', (event) => {
     GetSolicitudDene()
 })
 
-ipcMain.handle("Denegar_canal",( event,obj ) => {
+ipcMain.handle("Denegar_canal", (event, obj) => {
     Denegar_Solicitud(obj)
 });
 
@@ -75,7 +75,7 @@ ipcMain.handle('login', (event, obj) => {
     validarlogin(obj);
 })
 
-ipcMain.handle("Aceptar_Canal", (event ,obj)=>{
+ipcMain.handle("Aceptar_Canal", (event, obj) => {
     Aceptar_Solicitud(obj)
 })
 
@@ -86,8 +86,8 @@ async function validarlogin(obj) {
     //Separamos los datos de usuario y contraseña del array obj que era la variable que los contenia
     const pass = { usu, con } = obj;
     //Igualamos el Query de base de datos a una variable
-    const sql = "SELECT Usuario_Administrativo.Id_Administrativo, Usuario_Administrativo.Contraseña , Administrativos.Nombre FROM Usuario_Administrativo INNER JOIN Administrativos ON Usuario_Administrativo.Id_Administrativo = ? AND Usuario_Administrativo.Contraseña=?"
-    //Abrimos la conexion, pasamos el Query y validamos el usuario
+    const sql = "SELECT usuario_administrativo.Id_Administrativo, usuario_administrativo.Contraseña , administrativos.Nombre FROM usuario_administrativo INNER JOIN administrativos ON usuario_administrativo.Id_Administrativo = ? AND usuario_administrativo.Contraseña=?"
+        //Abrimos la conexion, pasamos el Query y validamos el usuario
     await conn.query(sql, [usu, con], (error, results, fields) => {
         if (error) { console.log(error); }
         //Si el usuario es correto abrimos el Home de lo contrario lanzamos una notificacion
@@ -103,23 +103,24 @@ async function validarlogin(obj) {
             }).show()
         }
     })
-} 
+}
 
 //Esta funcion pasa los datos de las solicitudes a cada escuela
 async function GetSolicitud() {
     const con = await getconexion();
-    const sql = 'SELECT Solicitud.Id_Solicitud, Solicitud.Fecha, Solicitud.Estatus, Estudiantes.Matricula, Curso.Grado, Escuelas.Nombre FROM Solicitud INNER JOIN Curso ON Solicitud.Id_Curso = Curso.ID_Curso INNER JOIN Estudiantes ON Estudiantes.Id_Estudiantes = Solicitud.Id_Estudiantes INNER JOIN Escuelas ON Solicitud.Id_Escuelas = Escuelas.Id_Escuelas WHERE Solicitud.Id_Escuelas = ? AND Solicitud.Estatus = "Vacio"'
+    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, estudiantes.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN estudiantes ON estudiantes.Id_Estudiantes = solicitud.Id_Estudiantes INNER JOIN escuelas ON solicitud.Id_Escuelas = escuelas.Id_Escuelas WHERE solicitud.Id_Escuelas = ? AND solicitud.Estatus = "Vacio"';
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
-            console.log(error);
+            console.log(id_Escue);
         }
+        console.log(results)
         winHome.webContents.send('solicitudes', results)
     })
 }
 
-async function GetSolicitudAcep(){
+async function GetSolicitudAcep() {
     const con = await getconexion();
-    const sql = 'SELECT Solicitud.Id_Solicitud, Solicitud.Fecha, Solicitud.Estatus, Estudiantes.Matricula, Curso.Grado, Escuelas.Nombre FROM Solicitud INNER JOIN Curso ON Solicitud.Id_Curso = Curso.ID_Curso INNER JOIN Estudiantes ON Estudiantes.Id_Estudiantes = Solicitud.Id_Estudiantes INNER JOIN Escuelas ON Solicitud.Id_Escuelas = Escuelas.Id_Escuelas WHERE Solicitud.Id_Escuelas = ? AND Solicitud.Estatus = "Aceptado"'
+    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, estudiantes.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN estudiantes ON estudiantes.Id_Estudiantes = solicitud.Id_Estudiantes INNER JOIN escuelas ON solicitud.Id_Escuelas = escuelas.Id_Escuelas WHERE solicitud.Id_Escuelas = ? AND solicitud.Estatus = "Aceptado"'
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
@@ -128,9 +129,9 @@ async function GetSolicitudAcep(){
     })
 }
 
-async function GetSolicitudDene(){
+async function GetSolicitudDene() {
     const con = await getconexion();
-    const sql = 'SELECT Solicitud.Id_Solicitud, Solicitud.Fecha, Solicitud.Estatus, Estudiantes.Matricula, Curso.Grado, Escuelas.Nombre FROM Solicitud INNER JOIN Curso ON Solicitud.Id_Curso = Curso.ID_Curso INNER JOIN Estudiantes ON Estudiantes.Id_Estudiantes = Solicitud.Id_Estudiantes INNER JOIN Escuelas ON Solicitud.Id_Escuelas = Escuelas.Id_Escuelas WHERE Solicitud.Id_Escuelas = ? AND Solicitud.Estatus = "Denegado"'
+    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, estudiantes.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN estudiantes ON estudiantes.Id_Estudiantes = solicitud.Id_Estudiantes INNER JOIN escuelas ON solicitud.Id_Escuelas = escuelas.Id_Escuelas WHERE solicitud.Id_Escuelas = ? AND solicitud.Estatus = "Denegado"'
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
@@ -139,43 +140,43 @@ async function GetSolicitudDene(){
     })
 }
 
-async function Denegar_Solicitud(obj){
-const con = await getconexion();
-const pass = {Id_Solicitud} = obj
-const sql = 'UPDATE Solicitud SET Estatus = "Denegado" WHERE Solicitud.Id_Solicitud=?'
-con.query(sql, [obj], (error, results, fields)=>{
-    if(error){
-        console.log(error)
-    }
-    GetSolicitud()
-    GetSolicitudDene()
-    GetSolicitudAcep()
-});
+async function Denegar_Solicitud(obj) {
+    const con = await getconexion();
+    const pass = { Id_Solicitud } = obj
+    const sql = 'UPDATE solicitud SET Estatus = "Denegado" WHERE solicitud.Id_Solicitud=?'
+    con.query(sql, [obj], (error, results, fields) => {
+        if (error) {
+            console.log(error)
+        }
+        GetSolicitud()
+        GetSolicitudDene()
+        GetSolicitudAcep()
+    });
 }
 
-async function Aceptar_Solicitud (obj){
-const con = await getconexion();
-const sql = 'UPDATE Solicitud SET Estatus = "Aceptado" WHERE Solicitud.Id_Solicitud=?'
-con.query(sql, [obj], (error, results, fields) =>{
-if(error){
-    console.log(error)
-}    
-GetSolicitud()
-GetSolicitudDene()
-GetSolicitudAcep()
-})
+async function Aceptar_Solicitud(obj) {
+    const con = await getconexion();
+    const sql = 'UPDATE solicitud SET Estatus = "Aceptado" WHERE solicitud.Id_Solicitud=?'
+    con.query(sql, [obj], (error, results, fields) => {
+        if (error) {
+            console.log(error)
+        }
+        GetSolicitud()
+        GetSolicitudDene()
+        GetSolicitudAcep()
+    })
 }
 
 //Definimos la relacion entre el administrativo que inicio sesion y la escuela a la que pertenece
 async function idEscu() {
     const con = await getconexion();
-    const sql = 'SELECT * FROM `Administrativos` WHERE Id_Administrativo = ?'
+    const sql = 'SELECT * FROM `administrativos` WHERE Id_Administrativo = ?'
     await con.query(sql, [Id_Admin], (error, results, fields) => {
         if (error) {
             console.log(error)
         }
         //igualo el lugar 0 del array donde se encuentra el id de la escuela a una variable global
-        id_Escue = results[0].Id_Escuela
+        id_Escue = results[0].Id_Escuelas
     })
 
 }
