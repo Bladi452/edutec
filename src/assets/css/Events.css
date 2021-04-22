@@ -5,5 +5,12 @@ label {
 
 input,
 label {
-    margin: .4rem 0;
+    width: 300px;
+margin-left: 200px;
+}
+
+#Formulario{
+    width: 500px;
+    text-align-last: auto;
+    margin-left: 200px;
 }

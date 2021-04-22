@@ -14,7 +14,6 @@ window.onload = function() {
     btnlogin.onclick = function() {
         //igualamos el valor del campo con la variable id
         id = logiusuario.value
-        console.log(id)
         //Se envia al MAIN para confirmar si es correcto 
         ipcRenderer.send('envio', (event, id))
         //se envian los usuarios y contraseñas a metodo principal

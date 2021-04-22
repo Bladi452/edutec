@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../assets/css/tabla.css">
     <link rel="stylesheet" href="../assets/css/Events.css">
     <script src="menuFun.js"></script>
+    <script src="crearevent.js"></script>
 </head>
 
 <body>
@@ -75,27 +76,26 @@
                             <span class="icon icon-cancel icon-close-tab"></span> Crear evento
                         </div>
 
-                    </div>
+                    </div id="">
                     <p id="letrero">
                         <b>Crear evento</b>
                     </p>
+                    <div id="Formulario">
                     <div class="form-group">
                         <label>Nombre</label>
-                        <textarea class="form-control" rows="1"></textarea>
+                        <textarea class="form-control" id="Nombre" rows="1"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Descripción</label>
-                        <textarea class="form-control" rows="4"></textarea>
+                        <textarea class="form-control" id="Descripcion" rows="4"></textarea>
                     </div>
-                    <label for="start">Fecha de incio:</label>
-
-
-                    <input type="date" id="start" name="trip-start" value="2021-04-19" min="2021-04-19" max="2022-04-19">
+                    <label for="start">Fecha de inicio:</label>
+                    <input type="date" id="Ini" name="trip-start" value="2021-04-19" min="2021-04-19" max="2022-04-19">
                     <label for="start">Fin del evento:</label>
-                    <input type="date" id="start" name="trip-start" value="2021-04-19" min="2021-04-19" max="2022-04-19">
+                    <input type="date" id="Fin" name="trip-start" value="2021-04-30" min="2021-04-19" max="2022-04-19">
                     <br>
-                    <button class="btn btn-positive">Agregar</button>
-
+                    <button class="btn btn-positive" id="AgreEven">Agregar</button>
+                </div>
                 </div>
             </div>
         </div>

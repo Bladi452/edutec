@@ -1,6 +1,4 @@
-const { ipcRenderer, Renderer } = require('electron');
-let btnCancelar;
-let btnAceptar;
+const { ipcRenderer,} = require('electron');
 let mylist;
 
 document.addEventListener("DOMContentLoaded", function() {
