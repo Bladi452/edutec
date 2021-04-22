@@ -4,7 +4,8 @@ let mylist;
 document.addEventListener("DOMContentLoaded", function() {
     mylist = document.getElementById("mylist")
     Letrero = document.getElementById("letrero")
-setInterval('renderGetProducts()', 1000) 
+    renderGetProducts()
+setInterval('renderGetProducts()', 1000)
 })
 
 
