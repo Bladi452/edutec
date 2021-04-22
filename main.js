@@ -43,7 +43,6 @@ function createWindowHome() {
     winHome = new BrowserWindow({
         width: 1336,
         height: 768,
-        resizable: false,
         webPreferences: {
             enableRemoteModule: true,
             nodeIntegration: true,

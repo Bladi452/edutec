@@ -1,9 +1,7 @@
 #tabla {
-    margin-left: 50px;
     margin-top: 10px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    max-width:10px;
+    margin-right: auto;
+    margin-bottom: auto;
 }
 
 .styled-table {
@@ -16,6 +14,7 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     text-align: center;
     max-width:10px;
+    
 }
 
 .styled-table thead tr {
@@ -23,6 +22,7 @@
     color: #ffffff;
     text-align: left;
     max-width:10px;
+
 }
 
 .styled-table th,
@@ -36,7 +36,7 @@
 
 .styled-table tbody tr {
     border-bottom: 1px solid #FCAD6D;
-    max-width: 12px;;
+    max-width: 12px;
 }
 
 .styled-table tbody tr:nth-of-type(even) {
@@ -45,11 +45,10 @@
 
 .styled-table tbody tr:last-of-type {
     border-bottom: 2px solid #FCAD6D;
-    width: 12px;
 }
 
 .styled-table tbody tr.active-row {
     font-weight: bold;
     color: #FCAD6D;
-    width: 12px;
+
 }
