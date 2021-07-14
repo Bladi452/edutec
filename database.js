@@ -12,3 +12,4 @@ function getconexion(){
 }
 
 module.exports ={getconexion}
+

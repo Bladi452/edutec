@@ -1,20 +1,32 @@
 <mxfile>
     <diagram id="AoCgPPjFG-LSiZQwtrS3" name="Page-1">
-        <mxGraphModel dx="466" dy="599" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1207" dy="856" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="1- Estudiantes" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="80" y="381" width="220" height="60" as="geometry"/>
+                <mxCell id="2" value="104-Orientadores" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="302" y="370" width="220" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="2- Profesores, Administrativo" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="90" y="310" width="200" height="60" as="geometry"/>
+                <mxCell id="3" value="106-Profesores" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="314" y="555" width="200" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="3- Director" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="100" y="240" width="180" height="60" as="geometry"/>
+                <mxCell id="4" value="102- Cordinador Tecnico" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="452" y="270" width="180" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="4-Desarrollador" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="120" y="171" width="140" height="60" as="geometry"/>
+                <mxCell id="5" value="100-Director" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="342" y="90" width="140" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="101- Cordinador General" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="322" y="180" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="103 - Cordinador Modalidad General" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="196" y="270" width="180" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="105- Secretarias docentes" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="312" y="460" width="200" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="107-Estudiantes" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                    <mxGeometry x="312" y="680" width="200" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
