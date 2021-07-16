@@ -164,3 +164,17 @@ insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) value
 insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 5, 20051, 2021100 );
 
 insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 6, 20051, 2021100 );
+
+
+CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
+       FOR EACH ROW
+       BEGIN
+           IF NEW.Estatus = 'Aprobado' THEN
+UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
+UPDATE curso_Escu SET Cupo = Cupo-1 WHERE ID_Curso = NEW.Id_Curso AND Codigo_Escuelas = NEW.Codigo_Escuelas;
+           END IF;
+       END
+
+
+DROP Trigger before_employee_update
+DROP TRIGGER upd_check
