@@ -65,7 +65,7 @@ create table tipo_sala(
 create table sala(
     id_Sala int AUTO_INCREMENT PRIMARY KEY,
     Nombre VARCHAR (30),
-    Fecha DATE,
+    Fecha VARCHAR(40),
     id_Tipo int,
     FOREIGN KEY (id_Tipo) REFERENCES tipo_sala(id)
 )
@@ -84,7 +84,7 @@ create table mensaje (
     mensaje VARCHAR (1638),
     id_Sala INT,
     Matricula INT,
-    fecha DATE,
+    fecha VARCHAR(40),
     FOREIGN KEY (Id_Sala) REFERENCES sala(id_Sala),
     FOREIGN KEY (Matricula) REFERENCES usuario(Matricula)
 )
@@ -105,8 +105,8 @@ create table solicitud(
 create table eventos(
     Id_Eventos int AUTO_INCREMENT PRIMARY KEY,
     Nombre VARCHAR (300),
-    Fecha_Ini DATE,
-    Fecha_Fin DATE,
+    Fecha_Ini VARCHAR (40),
+    Fecha_Fin VARCHAR (40),
     Codigo_Escuelas INT,
     FOREIGN KEY (Codigo_Escuelas) REFERENCES escuelas(Codigo_Escuelas)
 )
