@@ -233,15 +233,16 @@ async function Aceptar_documentos(obj) {
 
 async function Aceptar_Solicitud(obj) {
     const con = await getconexion();
-    const sql = 'UPDATE solicitud SET Estatus = "Aceptado" WHERE solicitud.Id_Solicitud=?'
-    con.query(sql, [obj], (error, results, fields) => {
+    const sql = 'UPDATE solicitud SET Estatus = "Aceptado",  WHERE solicitud.Id_Solicitud=?'
+   const soy = con.query(sql, [obj], (error, results, fields) => {
         if (error) {
             console.log(error)
         }
         GetSolicitud()
         GetSolicitudDene()
         GetSolicitudAcep()
-    })
+    });
+    console.log(soy)
 }
 
 //Definimos la relacion entre el administrativo que inicio sesion y la escuela a la que pertenece

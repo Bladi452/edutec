@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Bladi452/edutec#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "caniuse-api": "^3.0.0",
     "custom-electron-titlebar": "^3.2.6",
     "electron-compile": "^6.4.4",
@@ -28,7 +29,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.3",
-    "electron": "^11.4.3",
+    "electron": "^11.4.10",
     "electron-prebuilt-compile": "^8.2.0",
     "standard": "^16.0.3"
   }

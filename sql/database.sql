@@ -102,6 +102,14 @@ create table solicitud(
     FOREIGN KEY (Id_Curso) REFERENCES curso(ID_Curso)
 )
 
+create table solicitud_Add_User(
+    Id_Soli_Add INT PRIMARY KEY AUTO_INCREMENT,
+    Id_Solicitud INT,
+    Matricula INT,
+    FOREIGN KEY (Matricula) REFERENCES usuario(Matricula),
+    FOREIGN KEY (Id_Solicitud) REFERENCES solicitud(Id_Solicitud)
+)
+
 create table eventos(
     Id_Eventos int AUTO_INCREMENT PRIMARY KEY,
     Nombre VARCHAR (300),
@@ -174,9 +182,10 @@ UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = @Matr
 UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = @Matricula;
 UPDATE curso_Escu SET Cupo = Cupo-1 WHERE ID_Curso = NEW.Id_Curso AND Codigo_Escuelas = @Codigo_Escuelas;
 INSERT INTO sala (Nombre, Fecha, id_Tipo) VALUES ('Admisiones',NOW(),'1');
-INSERT INTO sala_usuario (Id_Sala, Matricula) VALUES (NEW.sala.id_Sala, @Matricula);
-           END IF;
-       END
+INSERT INTO sala_usuario (Id_Sala, Matricula) VALUES (NEW.sala.id_Sala, @Matricula)
+
+       END IF;
+   END
 
 DROP Trigger before_employee_update
 DROP TRIGGER upd_check
