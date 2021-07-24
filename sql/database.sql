@@ -170,13 +170,13 @@ CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
        FOR EACH ROW
        BEGIN
            IF NEW.Estatus = 'Aprobado' THEN
-UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
-UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
-UPDATE curso_Escu SET Cupo = Cupo-1 WHERE ID_Curso = NEW.Id_Curso AND Codigo_Escuelas = NEW.Codigo_Escuelas;
+UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = @Matricula;
+UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = @Matricula;
+UPDATE curso_Escu SET Cupo = Cupo-1 WHERE ID_Curso = NEW.Id_Curso AND Codigo_Escuelas = @Codigo_Escuelas;
 INSERT INTO sala (Nombre, Fecha, id_Tipo) VALUES ('Admisiones',NOW(),'1');
+INSERT INTO sala_usuario (Id_Sala, Matricula) VALUES (NEW.sala.id_Sala, @Matricula);
            END IF;
        END
-
 
 DROP Trigger before_employee_update
 DROP TRIGGER upd_check
