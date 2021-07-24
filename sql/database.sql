@@ -65,7 +65,7 @@ create table tipo_sala(
 create table sala(
     id_Sala int AUTO_INCREMENT PRIMARY KEY,
     Nombre VARCHAR (30),
-    Fecha VARCHAR(40),
+    Fecha DATE,
     id_Tipo int,
     FOREIGN KEY (id_Tipo) REFERENCES tipo_sala(id)
 )
@@ -164,14 +164,16 @@ insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) value
 insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 5, 20051, 2021100 );
 
 insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 6, 20051, 2021100 );
-
-
+--Tipo_Sala--
+INSERT INTO `tipo_sala` (`id`, `Nombre`) VALUES (NULL, 'Admisiones'), (NULL, 'Grupales'); 
 CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
        FOR EACH ROW
        BEGIN
            IF NEW.Estatus = 'Aprobado' THEN
 UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
+UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
 UPDATE curso_Escu SET Cupo = Cupo-1 WHERE ID_Curso = NEW.Id_Curso AND Codigo_Escuelas = NEW.Codigo_Escuelas;
+INSERT INTO sala (Nombre, Fecha, id_Tipo) VALUES ('Admisiones',NOW(),'1');
            END IF;
        END
 
