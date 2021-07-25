@@ -92,7 +92,7 @@ ipcMain.handle("Aceptar_documentos", (event, obj) => {
 
 //Lo utilizamos para llamar la funcion que valida el login y pasarle los datos ingresados a validar
 ipcMain.handle('login', (event, obj) => {
-    validarlogin(obj);
+   validarlogin(obj);
 })
 
 ipcMain.handle("Aceptar_Canal", (event, obj) => {
@@ -101,26 +101,25 @@ ipcMain.handle("Aceptar_Canal", (event, obj) => {
 
 //Iniciamos la funcion pasandole el objeto que contiene los datos a validar
 async function validarlogin(obj) {
-    //Llamamos la conexion a base de datos y la encapsulamos a una constante
-    const conn = await getconexion();
-    //Separamos los datos de usuario y contraseña del array obj que era la variable que los contenia
-    const pass = { usu, con } = obj;
-    //Igualamos el Query de base de datos a una variable
-    const sql = "SELECT usuario_administrativo.Id_Administrativo, usuario_administrativo.Contraseña , administrativos.Nombre FROM usuario_administrativo INNER JOIN administrativos ON usuario_administrativo.Id_Administrativo = ? AND usuario_administrativo.Contraseña=?"
-        //Abrimos la conexion, pasamos el Query y validamos el usuario
 
-    await conn.query(sql, [usu, con], (error, results, fields) => {
+    let usu = obj.usu;
+    let con = obj.con;
+    const conn = await getconexion();
+  
+    const sql = "SELECT usuario.Matricula, usuario.Pass, cargo_seleccionar.Id_Cargo_Seleccionar, cargo.Nivel FROM cargo_seleccionar INNER JOIN cargo ON cargo_seleccionar.Id_Cargo = cargo.Id_Cargo INNER JOIN usuario ON cargo_seleccionar.Matricula = usuario.Matricula WHERE usuario.Matricula = ? AND usuario.Pass = ? And cargo.Nivel > 1"
+
+    const soynew = await conn.query(sql, [usu, con], (error, results, fields) => {
         if (error) { console.log(error); }
-        //Si el usuario es correto abrimos el Home de lo contrario lanzamos una notificacion
         if (results.length > 0) {
-            idEscu();
+
+           idEscu();
             createWindowHome();
             winHome.show()
             win.hide()
         } else {
             new Notification({
                 title: "EduAtlas",
-                body: 'El usuario o contraseña no son validos'
+                body: 'El usuario o contraseña no son validos, o usted no es administrativo '
             }).show()
         }
     })
