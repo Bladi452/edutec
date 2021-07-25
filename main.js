@@ -62,10 +62,11 @@ ipcMain.handle('getDocs', (event) => {
 })
 
 ipcMain.handle('AgreEvent2', (event, obj) => {
-    obj1 = { Nombre, Descripcion, Fecha_Ini, Fecha_Fin } = obj;
+    const { Nombre, Descripcion, Fecha_Ini, Fecha_Fin } = obj;
     obj2 = { Nombre, Descripcion, Fecha_Ini, Fecha_Fin, Codigo_Escuelas: id_Escue }
     AgregarEvent(obj2)
 })
+
 ipcMain.handle('eventos', (event, obj) => {
     GetEventos(obj)
 })
@@ -127,7 +128,7 @@ async function validarlogin(obj) {
 
 async function GetDocs() {
     const con = await getconexion();
-    const sql = 'SELECT documentos.Id_documentos, documentos.UrlDocs, documentos.Id_Estudiantes, documentos.Nombre, estudiantes.Matricula FROM documentos INNER JOIN estudiantes ON documentos.Id_Estudiantes = estudiantes.Id_Estudiantes WHERE documentos.Codigo_Escuelas = ? AND documentos.Estado = "Vacio"';
+    const sql = 'SELECT documentos.Id_documentos, documentos.UrlDocs, documentos.Id_Estudiantes, documentos.Nombre, usuario.Matricula FROM documentos INNER JOIN usuario ON documentos.Matricula = usuario.Matricula WHERE documentos.Codigo_Escuelas = ? AND documentos.Estado = "Vacio"';
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
@@ -139,7 +140,7 @@ async function GetDocs() {
 //Esta funcion pasa los datos de las solicitudes a cada escuela
 async function GetSolicitud() {
     const con = await getconexion();
-    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, estudiantes.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN estudiantes ON estudiantes.Id_Estudiantes = solicitud.Id_Estudiantes INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = ? AND solicitud.Estatus = "Vacio"';
+    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, usuario.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN estudiantes ON estudiantes.Id_Estudiantes = solicitud.Id_Estudiantes INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = ? AND solicitud.Estatus = "Vacio"';
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log();
@@ -194,7 +195,6 @@ async function AgregarEvent(obj2) {
 
 async function Denegar_Solicitud(obj) {
     const con = await getconexion();
-    const pass = { Id_Solicitud } = obj
     const sql = 'UPDATE solicitud SET Estatus = "Denegado" WHERE solicitud.Id_Solicitud=?'
     con.query(sql, [obj], (error, results, fields) => {
         if (error) {
@@ -208,7 +208,6 @@ async function Denegar_Solicitud(obj) {
 
 async function Denegar_documentos(obj) {
     const con = await getconexion();
-    const pass = { Id_Solicitud } = obj
     const sql = 'UPDATE documentos SET Estado= "Denegado" WHERE documentos.Id_documentos=?'
     con.query(sql, [obj], (error, results, fields) => {
         if (error) {
@@ -247,7 +246,7 @@ async function Aceptar_Solicitud(obj) {
 //Definimos la relacion entre el administrativo que inicio sesion y la escuela a la que pertenece
 async function idEscu() {
     const con = await getconexion();
-    const sql = 'SELECT * FROM `administrativos` WHERE Id_Administrativo = ?'
+    const sql = 'SELECT * FROM `usuario` WHERE Matricula = ?'
     await con.query(sql, [Id_Admin], (error, results, fields) => {
         if (error) {
             console.log(error)
@@ -257,6 +256,7 @@ async function idEscu() {
     })
 
 }
+
 //Exportamos la funcion que crea la primera ventana al index 
 module.exports = {
     createWindow
