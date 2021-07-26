@@ -151,6 +151,16 @@ insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,
 insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20053', 'Liceo Virgilio Casilla Minaya', 'Desde el año 2015 estamos dando nuestro mejor servicio para ustedes en las modalidades de Logistica Contabilidad, Informatica', 123213412.32131234213 , 123123214.215344323213, 'Extendida','Tecnica' );
 insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20054', 'Liceo federico henriquez y carvajal', 'Dirección: Calle Cnel. Rafael Fernández Domínguez, Santo Domingo, Impartimos Informatica, Marketing y Contabilidad', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica' );
 
+--Niveles
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Estudiante', '107');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Profesores', '106');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Secretaria', '105');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Orientadores', '104');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Coordinador Modalidad General', '103');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Coordinador Tecnico', '102');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Coordinador General', '101');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Director', '100');
+
 --Curso--
 
 insert into curso (Grado) values ('1ro');
@@ -181,8 +191,8 @@ CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
            IF NEW.Estatus = 'Aprobado' THEN
 UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
 UPDATE curso_Escu SET Cupo = Cupo-1 WHERE ID_Curso = NEW.Id_Curso AND Codigo_Escuelas = NEW.Codigo_Escuelas;
+UPDATE cargo_seleccionar SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
 INSERT INTO sala_usuario (Id_Sala, Matricula) VALUES ( null, NEW.Matricula);
-
 INSERT INTO sala (Nombre, Fecha, id_Tipo) VALUES ('Admisiones',NOW(),'1');
 
        END IF;
@@ -203,8 +213,6 @@ CREATE TRIGGER insert_Agrega_Quien_Agrego AFTER INSERT ON solicitud_Add_User
     INSERT INTO sala_usuario (Id_Sala, Matricula) SELECT Id_Sala, NEW.Matricula FROM sala_usuario ORDER BY Id_Sala DESC LIMIT 1 ;
 
    END
-
-
 
 DROP TRIGGER upd_check
 DROP TRIGGER insert_check
