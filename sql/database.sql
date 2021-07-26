@@ -114,6 +114,7 @@ create table eventos(
     Nombre VARCHAR (300),
     Fecha_Ini VARCHAR (40),
     Fecha_Fin VARCHAR (40),
+    Descripcion VARCHAR (1000),
     Codigo_Escuelas INT,
     FOREIGN KEY (Codigo_Escuelas) REFERENCES escuelas(Codigo_Escuelas)
 )

@@ -128,7 +128,7 @@ async function validarlogin(obj) {
 
 async function GetDocs() {
     const con = await getconexion();
-    const sql = 'SELECT documentos.Id_documentos, documentos.UrlDocs, documentos.Id_Estudiantes, documentos.Nombre, usuario.Matricula FROM documentos INNER JOIN usuario ON documentos.Matricula = usuario.Matricula WHERE documentos.Codigo_Escuelas = ? AND documentos.Estado = "Vacio"';
+    const sql = 'SELECT documentos.Id_documentos, documentos.UrlDocs, documentos.Matricula, documentos.Nombre, usuario.Matricula FROM documentos INNER JOIN usuario ON documentos.Matricula = usuario.Matricula WHERE documentos.Codigo_Escuelas = 20015 AND documentos.Estado = "null"; ';
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
@@ -140,7 +140,7 @@ async function GetDocs() {
 //Esta funcion pasa los datos de las solicitudes a cada escuela
 async function GetSolicitud() {
     const con = await getconexion();
-    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, usuario.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN estudiantes ON estudiantes.Id_Estudiantes = solicitud.Id_Estudiantes INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = ? AND solicitud.Estatus = "Vacio"';
+    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, usuario.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN usuario ON usuario.Matricula = solicitud.Matricula INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = ? AND solicitud.Estatus = "null"';
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log();
@@ -162,7 +162,7 @@ async function GetEventos() {
 
 async function GetSolicitudAcep() {
     const con = await getconexion();
-    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, estudiantes.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN estudiantes ON estudiantes.Id_Estudiantes = solicitud.Id_Estudiantes INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = ? AND solicitud.Estatus = "Aceptado"'
+    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, usuario.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN usuario ON usuario.Matricula = solicitud.Matricula INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = 20015 AND solicitud.Estatus = "Aceptado";'
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
@@ -173,7 +173,7 @@ async function GetSolicitudAcep() {
 
 async function GetSolicitudDene() {
     const con = await getconexion();
-    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, estudiantes.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN estudiantes ON estudiantes.Id_Estudiantes = solicitud.Id_Estudiantes INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = ? AND solicitud.Estatus = "Denegado"'
+    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, usuario.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN usuario ON usuario.Matricula = solicitud.Matricula INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = ? AND solicitud.Estatus = "Denegado"'
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
@@ -195,7 +195,7 @@ async function AgregarEvent(obj2) {
 
 async function Denegar_Solicitud(obj) {
     const con = await getconexion();
-    const sql = 'UPDATE solicitud SET Estatus = "Denegado" WHERE solicitud.Id_Solicitud=?'
+    const sql = 'UPDATE solicitud SET Estatus = "Denegado" WHERE solicitud.Matricula=?'
     con.query(sql, [obj], (error, results, fields) => {
         if (error) {
             console.log(error)
@@ -231,17 +231,17 @@ async function Aceptar_documentos(obj) {
 
 async function Aceptar_Solicitud(obj) {
     const con = await getconexion();
-    const sql = 'UPDATE solicitud SET Estatus = "Aceptado",  WHERE solicitud.Id_Solicitud=?'
+    const sql = 'UPDATE solicitud SET Estatus = "Aceptado",  WHERE solicitud.Matricula=?'
    
-    const soy = con.query(sql, [obj], (error, results, fields) => {
+    con.query(sql, [obj], (error, results, fields) => {
         if (error) {
             console.log(error)
         }
     });
 
     const sql2 = 'INSERT INTO `solicitud_Add_User` (`Id_Solicitud`, `Matricula`) VALUES ( ?, ?)'
-    
-    const soy = con.query(sql, [id_Escue] ,[obj], (error, results, fields) => {
+
+    con.query(sql2, [id_Escue] ,[obj], (error, results, fields) => {
         if (error) {
             console.log(error)
         }
