@@ -232,7 +232,16 @@ async function Aceptar_documentos(obj) {
 async function Aceptar_Solicitud(obj) {
     const con = await getconexion();
     const sql = 'UPDATE solicitud SET Estatus = "Aceptado",  WHERE solicitud.Id_Solicitud=?'
-   const soy = con.query(sql, [obj], (error, results, fields) => {
+   
+    const soy = con.query(sql, [obj], (error, results, fields) => {
+        if (error) {
+            console.log(error)
+        }
+    });
+
+    const sql2 = 'INSERT INTO `solicitud_Add_User` (`Id_Solicitud`, `Matricula`) VALUES ( ?, ?)'
+    
+    const soy = con.query(sql, [id_Escue] ,[obj], (error, results, fields) => {
         if (error) {
             console.log(error)
         }

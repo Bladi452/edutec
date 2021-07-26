@@ -44,7 +44,6 @@ create table cargo(
     Nivel INT
 )
 
-
 create table cargo_seleccionar(
     Id_Cargo_Seleccionar INT AUTO_INCREMENT PRIMARY KEY,
     Codigo_Escuelas int,
@@ -173,19 +172,39 @@ insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) value
 
 insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 6, 20051, 2021100 );
 --Tipo_Sala--
-INSERT INTO `tipo_sala` (`id`, `Nombre`) VALUES (NULL, 'Admisiones'), (NULL, 'Grupales'); 
+INSERT INTO `tipo_sala` (`id`, `Nombre`) VALUES (NULL, 'Admisiones'), (NULL, 'Grupales');
+
 CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
        FOR EACH ROW
        BEGIN
            IF NEW.Estatus = 'Aprobado' THEN
-UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = @Matricula;
-UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = @Matricula;
-UPDATE curso_Escu SET Cupo = Cupo-1 WHERE ID_Curso = NEW.Id_Curso AND Codigo_Escuelas = @Codigo_Escuelas;
+UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
+UPDATE curso_Escu SET Cupo = Cupo-1 WHERE ID_Curso = NEW.Id_Curso AND Codigo_Escuelas = NEW.Codigo_Escuelas;
+INSERT INTO sala_usuario (Id_Sala, Matricula) VALUES ( null, NEW.Matricula);
+
 INSERT INTO sala (Nombre, Fecha, id_Tipo) VALUES ('Admisiones',NOW(),'1');
-INSERT INTO sala_usuario (Id_Sala, Matricula) VALUES (NEW.sala.id_Sala, @Matricula)
 
        END IF;
    END
 
-DROP Trigger before_employee_update
+CREATE TRIGGER insert_check AFTER INSERT ON sala
+       FOR EACH ROW
+       BEGIN
+
+    UPDATE sala_usuario SET Id_Sala = NEW.id_Sala WHERE Id = (SELECT Id FROM sala_usuario ORDER BY Id_Sala DESC LIMIT 1 );
+
+   END
+
+CREATE TRIGGER insert_Agrega_Quien_Agrego AFTER INSERT ON solicitud_Add_User
+       FOR EACH ROW
+       BEGIN
+
+    INSERT INTO sala_usuario (Id_Sala, Matricula) SELECT Id_Sala, NEW.Matricula FROM sala_usuario ORDER BY Id_Sala DESC LIMIT 1 ;
+
+   END
+
+
+
 DROP TRIGGER upd_check
+DROP TRIGGER insert_check
+DROP TRIGGER insert_Agrega_Quien_Agrego
