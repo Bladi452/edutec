@@ -1,5 +1,5 @@
 //Llamar modulos de electron
-
+const {matchPassword} = require('./src/renderer/bycript')
 const { BrowserWindow, Notification, ipcMain } = require('electron');
 
 //Se llama la conexion a la base de datos y se iguala a una constante
@@ -101,28 +101,49 @@ ipcMain.handle("Aceptar_Canal", (event, obj) => {
 })
 
 //Iniciamos la funcion pasandole el objeto que contiene los datos a validar
-async function validarlogin(obj) {
+const validarlogin = async (obj) =>  {
 
     let usu = obj.usu;
     let con = obj.con;
     const conn = await getconexion();
   
-    const sql = "SELECT usuario.Matricula, usuario.Pass, cargo_seleccionar.Id_Cargo_Seleccionar, cargo.Nivel FROM cargo_seleccionar INNER JOIN cargo ON cargo_seleccionar.Id_Cargo = cargo.Id_Cargo INNER JOIN usuario ON cargo_seleccionar.Matricula = usuario.Matricula WHERE usuario.Matricula = ? AND usuario.Pass = ? And cargo.Nivel > 1"
+    const sql = "SELECT usuario.Matricula, usuario.Pass, cargo_seleccionar.Id_Cargo_Seleccionar, cargo.Nivel FROM cargo_seleccionar INNER JOIN cargo ON cargo_seleccionar.Id_Cargo = cargo.Id_Cargo INNER JOIN usuario ON cargo_seleccionar.Matricula = usuario.Matricula WHERE usuario.Matricula = ?"
 
-    const soynew = await conn.query(sql, [usu, con], (error, results, fields) => {
+    await conn.query(sql, [usu], (error, results, fields) => {
+        const validPassword = await matchPassword(con, results[0].Pass)
+
         if (error) { console.log(error); }
-        if (results.length > 0) {
 
+        if (results.length > 0) {
+   
+
+   
+   if(validPassword){
+       
+    if(results[0].Nivel > 107){
            idEscu();
             createWindowHome();
             winHome.show()
             win.hide()
-        } else {
+        }else{
             new Notification({
                 title: "EduAtlas",
-                body: 'El usuario o contraseña no son validos, o usted no es administrativo '
+                body: 'Usted no es administrativo'
             }).show()
         }
+
+        
+    }else{
+            new Notification({
+                title: "EduAtlas",
+                body: 'La clave es incorrecta'
+            }).show()
+        }
+         } else {
+                new Notification({
+                title: "EduAtlas",
+                body: 'El usuario no existe'
+            }).show()}
     })
 }
 
