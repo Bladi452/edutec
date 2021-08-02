@@ -11,14 +11,20 @@ window.onload = function() {
     logicontra = document.getElementById('contra');
     btnlogin = document.getElementById('Ini');
 
+
     //Se activa al hacer click en el boton
     btnlogin.onclick = function() {
-        //igualamos el valor del campo con la variable id
+        //igualamos el valor del campo con la variable id 
+        if(logicontra.value == ''){
+            alert('Clave vacia')
+        }else{
+            console.log(logicontra.value)
         id = logiusuario.value
         //Se envia al MAIN para confirmar si es correcto 
-        ipcRenderer.send('envio', (event, id))
+        ipcRenderer.send('envio', (id))
         //se envian los usuarios y contraseñas a metodo principal
         const obj = { usu: logiusuario.value, con: logicontra.value }
         ipcRenderer.invoke('login', obj);
+    }
     }
 }

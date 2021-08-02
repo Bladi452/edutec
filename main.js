@@ -109,41 +109,44 @@ const validarlogin = async (obj) =>  {
   
     const sql = "SELECT usuario.Matricula, usuario.Pass, cargo_seleccionar.Id_Cargo_Seleccionar, cargo.Nivel FROM cargo_seleccionar INNER JOIN cargo ON cargo_seleccionar.Id_Cargo = cargo.Id_Cargo INNER JOIN usuario ON cargo_seleccionar.Matricula = usuario.Matricula WHERE usuario.Matricula = ?"
 
-    await conn.query(sql, [usu], (error, results, fields) => {
+    const valida= async(results)=>{
+   
+
         const validPassword = await matchPassword(con, results[0].Pass)
+
+if(validPassword){
+   
+if(results[0].Nivel > 107){
+       idEscu();
+        createWindowHome();
+        winHome.show()
+        win.hide()
+    }else{
+        new Notification({
+            title: "EduAtlas",
+            body: 'Usted no es administrativo'
+        }).show()
+    }
+
+    
+}else{
+        new Notification({
+            title: "EduAtlas",
+            body: 'La clave es incorrecta'
+        }).show()
+     } 
+    }
+    await   conn.query(sql, [usu], (error, results, fields)  => {
 
         if (error) { console.log(error); }
 
         if (results.length > 0) {
-   
-
-   
-   if(validPassword){
-       
-    if(results[0].Nivel > 107){
-           idEscu();
-            createWindowHome();
-            winHome.show()
-            win.hide()
-        }else{
+valida(results)
+        }else {
             new Notification({
-                title: "EduAtlas",
-                body: 'Usted no es administrativo'
-            }).show()
-        }
-
-        
-    }else{
-            new Notification({
-                title: "EduAtlas",
-                body: 'La clave es incorrecta'
-            }).show()
-        }
-         } else {
-                new Notification({
-                title: "EduAtlas",
-                body: 'El usuario no existe'
-            }).show()}
+            title: "EduAtlas",
+            body: 'El usuario no existe'
+        }).show()}    
     })
 }
 
