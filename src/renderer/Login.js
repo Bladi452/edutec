@@ -15,12 +15,6 @@ window.onload = function() {
     //Se activa al hacer click en el boton
     btnlogin.onclick = async function() {
         //igualamos el valor del campo con la variable id 
-        if(logicontra.value == ''){
-            alert('Clave vacia')
-        }else{
-            const pass = await encryptPassword(logicontra.value)
-
-            console.log(pass)
         id = logiusuario.value
         //Se envia al MAIN para confirmar si es correcto 
         ipcRenderer.send('envio', (id))
@@ -28,5 +22,4 @@ window.onload = function() {
         const obj = { usu: logiusuario.value, con: logicontra.value }
         ipcRenderer.invoke('login', obj);
     }
-    }
-}
+  }

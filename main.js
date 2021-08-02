@@ -20,6 +20,7 @@ var id_Escue;
 ipcMain.on('envio', (event, id) => {
         Id_Admin = id;
     })
+
     //Creamos la ventana del login
 
 function createWindow() {
@@ -152,7 +153,7 @@ valida(results)
 
 async function GetDocs() {
     const con = await getconexion();
-    const sql = 'SELECT documentos.Id_documentos, documentos.UrlDocs, documentos.Matricula, documentos.Nombre, usuario.Matricula FROM documentos INNER JOIN usuario ON documentos.Matricula = usuario.Matricula WHERE documentos.Codigo_Escuelas = 20015 AND documentos.Estado = "null"; ';
+    const sql = 'SELECT documentos.Id_documentos, documentos.UrlDocs, documentos.Matricula, documentos.Nombre, usuario.Matricula FROM documentos INNER JOIN usuario ON documentos.Matricula = usuario.Matricula WHERE documentos.Codigo_Escuelas = 20015 AND documentos.Estado = "null"';
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
