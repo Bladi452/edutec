@@ -116,7 +116,7 @@ const validarlogin = async (obj) =>  {
 
 if(validPassword){
    
-if(results[0].Nivel > 107){
+if(results[0].Nivel < 107){
        idEscu();
         createWindowHome();
         winHome.show()
