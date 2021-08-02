@@ -1,4 +1,5 @@
 const { ipcRenderer} = require('electron');
+const {encryptPassword} = require('./bycript')
 var id;
 let logiusuario;
 let logicontra;
@@ -9,7 +10,7 @@ window.onload = function() {
     logiusuario = document.getElementById('usuario');
     logicontra = document.getElementById('contra');
     btnlogin = document.getElementById('Ini');
-
+    const pass = await encryptPassword(logicontra.value)
     //Se activa al hacer click en el boton
     btnlogin.onclick = function() {
         //igualamos el valor del campo con la variable id
@@ -17,7 +18,7 @@ window.onload = function() {
         //Se envia al MAIN para confirmar si es correcto 
         ipcRenderer.send('envio', (event, id))
         //se envian los usuarios y contraseñas a metodo principal
-        const obj = { usu: logiusuario.value, con: logicontra.value }
+        const obj = { usu: logiusuario.value, con: pass }
         ipcRenderer.invoke('login', obj);
     }
 }
