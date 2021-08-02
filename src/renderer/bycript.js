@@ -14,7 +14,7 @@ const matchPassword = async (password, savedPassword) => {
   }
 };
 
-module.exports ={
+module.exports = {
   encryptPassword,
   matchPassword
 }

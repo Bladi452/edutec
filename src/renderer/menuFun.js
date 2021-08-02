@@ -17,3 +17,7 @@ function CreaEven() {
 function Docs() {
     location.href = "Documentos.html"
 }
+
+function Chat() {
+    location.href = "chat.html"
+}

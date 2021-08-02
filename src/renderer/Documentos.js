@@ -13,7 +13,7 @@ async function renderGetProducts() {
     await ipcRenderer.invoke('getDocs')
 }
 
-ipcRenderer.on('Docs', (event, results) => {
+ipcRenderer.on('Docs', (results) => {
     let template = ""
     const list = results
     list.forEach(element => {
