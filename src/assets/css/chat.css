@@ -14,9 +14,6 @@
     background: rgba(82,179,217,0.9);
     z-index: 100;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
 }
 
 .back {
@@ -86,7 +83,8 @@
 }
 
 .other .msg {
-	ali
+    margin-left:40px;
+	align-self: center;
     order: 1;
     border-top-left-radius: 0px;
     box-shadow: -1px 2px 0px #D4D4D4;
@@ -105,32 +103,14 @@
 }
 
 .self {
-    justify-content: flex-end;
-    align-items: flex-end;
+    justify-content:center;
 }
 .self .msg {
-	text-align:right;
+	margin-left:900px;
     order: 1;
     border-bottom-right-radius: 0px;
     box-shadow: 1px 2px 0px #D4D4D4;
 }
-.self .avatar {
-    order: 2;
-}
-.self .avatar:after {
-    content: "";
-    position: relative;
-    display: inline-block;
-    bottom: 19px;
-    right: 0px;
-    width: 0px;
-    height: 0px;
-    border: 5px solid #fff;
-    border-right-color: transparent;
-    border-top-color: transparent;
-    box-shadow: 0px 2px 0px #D4D4D4;
-}
-
 .msg {
     background: white;
     min-width: 50px;
@@ -143,40 +123,14 @@
     margin: 0 0 0.2rem 0;
     color: #777;
 }
-.msg img {
-    position: relative;
-    display: block;
-    width: 450px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 3px #eee;
-    transition: all .4s cubic-bezier(0.565, -0.260, 0.255, 1.410);
-    cursor: default;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-@media screen and (max-width: 800px) {
-    .msg img {
-    width: 300px;
-}
-}
-@media screen and (max-width: 550px) {
-    .msg img {
-    width: 200px;
-}
-}
 
 .msg time {
     font-size: 0.7rem;
     color: #ccc;
     margin-top: 3px;
     float: right;
-    cursor: default;
     -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    cursor: default;
 }
 .msg time:before{
     content:"\f017";
@@ -184,33 +138,6 @@
     font-family: FontAwesome;
     display: inline-block;
     margin-right: 4px;
-}
-
-emoji{
-    display: inline-block;
-    height: 18px;
-    width: 18px;
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin-top: -7px;
-    margin-right: 2px;
-    transform: translate3d(0px, 3px, 0px);
-}
-emoji.please{background-image: url(https://imgur.com/ftowh0s.png);}
-emoji.lmao{background-image: url(https://i.imgur.com/MllSy5N.png);}
-emoji.happy{background-image: url(https://imgur.com/5WUpcPZ.png);}
-emoji.pizza{background-image: url(https://imgur.com/voEvJld.png);}
-emoji.cryalot{background-image: url(https://i.imgur.com/UUrRRo6.png);}
-emoji.books{background-image: url(https://i.imgur.com/UjZLf1R.png);}
-emoji.moai{background-image: url(https://imgur.com/uSpaYy8.png);}
-emoji.suffocated{background-image: url(https://i.imgur.com/jfTyB5F.png);}
-emoji.scream{background-image: url(https://i.imgur.com/tOLNJgg.png);}
-emoji.hearth_blue{background-image: url(https://i.imgur.com/gR9juts.png);}
-emoji.funny{background-image: url(https://i.imgur.com/qKia58V.png);}
-
-@-webikt-keyframes pulse {
-  from { opacity: 0; }
-  to { opacity: 0.5; }
 }
 
 ::-webkit-scrollbar {
@@ -252,32 +179,23 @@ emoji.funny{background-image: url(https://i.imgur.com/qKia58V.png);}
 input.textarea {
     position: fixed;
     bottom: 0px;
-    left: 0px;
+    left: 26%;
     right: 0px;
-    width: 100%;
+    width: 60%;
     height: 50px;
     z-index: 99;
     background: #fafafa;
     border: none;
     outline: none;
-    padding-left: 55px;
+    padding-left: 25px;
     padding-right: 55px;
     color: #666;
     font-weight: 400;
 }
-.emojis {
-    position: fixed;
-    display: block;
-    bottom: 8px;
-    left: 7px;
-    width: 34px;
-    height: 34px;
-    background-image: url(https://i.imgur.com/5WUpcPZ.png);
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: 100;
-    cursor: pointer;
-}
-.emojis:active {
-    opacity: 0.9;
+ .enviar{
+    position: absolute;
+    left: 1510px;
+    top: auto;
+    width: auto;
+    bottom: 2%;
 }
