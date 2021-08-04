@@ -16,6 +16,8 @@ window.onload = function() {
     btnlogin.onclick = async function() {
         //igualamos el valor del campo con la variable id 
         id = logiusuario.value
+        const pass = await encryptPassword(logicontra.value)
+        console.log(pass)
         //Se envia al MAIN para confirmar si es correcto 
         ipcRenderer.send('envio', (id))
         //se envian los usuarios y contraseñas a metodo principal

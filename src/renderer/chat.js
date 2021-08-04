@@ -19,16 +19,14 @@ ipcRenderer.on('solicitudesNew', (event, results) => {
     list.forEach(element => {
         template += `
 
-        <div class="chat_list">
-        <div class="chat_people">
-          <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-          <div class="chat_ib">
-            <h5>${element.Nombre}<span class="chat_date">{}</span></h5>
-            <p>${element.Message}</p>
-          </div>
+
+        <li class="list-group-item" onclick="Solicitud()">
+        <div class="media-body">
+            <center>
+                <strong>Solicitud</strong>
+            </center>
         </div>
-      </div>
-    `
+    </li>    `
     });
     mylist.innerHTML = template;
 })
