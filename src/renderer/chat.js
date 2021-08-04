@@ -1,10 +1,10 @@
+let chat
 let mylist;
-//romo
 
 
 document.addEventListener("DOMContentLoaded", function() {
+    chat = document.getElementById("chat")
     mylist = document.getElementById("mylist")
-    Letrero = document.getElementById("letrero")
     renderGetProducts()
 setInterval('renderGetProducts()', 1000)
 })
