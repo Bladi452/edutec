@@ -19,13 +19,16 @@ ipcRenderer.on('Docs', (results) => {
     list.forEach(element => {
         template += ` 
     <tr>
-          <td>${element.Id_documentos}</td>       
+          <td>${element.Id_documentos}</td>
           <td>${element.Nombre}</td>
-          <td>${element.UrlDocs}</td>
-          <td>${element.Matricula}</td>        
-<td>  <button id = "Cancelar" 
+        <form action="http://10.0.0.3:3000/document/descarga/:${element.Id_documentos}" method="get">
+          <button type="submit">Descargar</button>
+      </form>
+          <td>${element.Matricula}</td>
+
+          <td>  <button id = "Cancelar"
 onclick="CancelarDocs('${element.Id_documentos}')">x</button>
-      <button id = "Aceptar" 
+      <button id = "Aceptar"
       onclick="ValidarDocs('${element.Id_documentos}')">✓</button>
 </td>
           <tr>
