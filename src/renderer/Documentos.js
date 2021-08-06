@@ -1,3 +1,4 @@
+const
 const { ipcRenderer, } = require('electron');
 let mylist;
 
@@ -12,7 +13,7 @@ async function renderGetProducts() {
     await ipcRenderer.invoke('getDocs')
 }
 
-ipcRenderer.on('Docs', (results) => {
+ipcRenderer.on('Docs', (event, results) => {
     let template = ""
     const list = results
     list.forEach(element => {
@@ -21,7 +22,7 @@ ipcRenderer.on('Docs', (results) => {
           <td>${element.Id_documentos}</td>
           <td>${element.Nombre}</td>
         <form action="http://10.0.0.3:3000/document/descarga/:${element.Id_documentos}" method="get">
-          <button type="submit">Descargar</button>
+          <button type="submit" onclick= "getDocumentos('${element.Id_documentos}')">Descargar</button>
       </form>
           <td>${element.Matricula}</td>
 
