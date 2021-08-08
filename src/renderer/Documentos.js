@@ -1,6 +1,15 @@
-const
-const { ipcRenderer, } = require('electron');
+const { ipcRenderer, net } = require('electron');
 let mylist;
+
+function getDocumentos() {
+    const request = net.request({
+        method: 'GET',
+        protocol: 'http:',
+        hostname: 'httpbin.org',
+        path: `/document/descarga/${id}`,
+        redirect: 'follow'
+    });
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     mylist = document.getElementById("mylist")
