@@ -30,9 +30,7 @@ ipcRenderer.on('Docs', (event, results) => {
     <tr>
           <td>${element.Id_documentos}</td>
           <td>${element.Nombre}</td>
-        <form action="http://10.0.0.3:3000/document/descarga/:${element.Id_documentos}" method="get">
           <button type="submit" onclick= "getDocumentos('${element.Id_documentos}')">Descargar</button>
-      </form>
           <td>${element.Matricula}</td>
 
           <td>  <button id = "Cancelar"
