@@ -1,14 +1,12 @@
 const { ipcRenderer, net } = require('electron');
+const axios = require('axios');
+
 let mylist;
 
-function getDocumentos() {
-    const request = net.request({
-        method: 'GET',
-        protocol: 'http:',
-        hostname: 'httpbin.org',
-        path: `/document/descarga/${id}`,
-        redirect: 'follow'
-    });
+async function getDocumentos(id) {
+
+const response = await axios.get('http://localhost:3000/document/descarga/${id}')
+  console.log(response)
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -30,7 +28,7 @@ ipcRenderer.on('Docs', (event, results) => {
     <tr>
           <td>${element.Id_documentos}</td>
           <td>${element.Nombre}</td>
-          <button type="submit" onclick= "getDocumentos('${element.Id_documentos}')">Descargar</button>
+          <button type="submit" onclick="getDocumentos('${element.Id_documentos}')">Descargar</button>
           <td>${element.Matricula}</td>
 
           <td>  <button id = "Cancelar"

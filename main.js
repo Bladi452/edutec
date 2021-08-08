@@ -1,7 +1,6 @@
 //Llamar modulos de electron
 const {matchPassword} = require('./src/renderer/bycript')
 const { BrowserWindow, Notification, ipcMain } = require('electron');
-const axios = require('axios');
 //Se llama la conexion a la base de datos y se iguala a una constante
 
 const { getconexion } = require('./database')
