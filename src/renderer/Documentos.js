@@ -3,11 +3,6 @@ const axios = require('axios');
 
 let mylist;
 
-async function getDocumentos(id) {
-
-const response = await axios.get('http://localhost:3000/document/descarga/${id}')
-  console.log(response)
-}
 
 document.addEventListener("DOMContentLoaded", function() {
     mylist = document.getElementById("mylist")
@@ -49,7 +44,14 @@ async function CancelarDocs(Id_documentos) {
     }
     return;
 }
+async function getDocumentos(id) {
 
+    const response = await axios.get(`http://localhost:3000/document/descarga/${id}`)
+ /*     console.log(response)
+*/ console.log(response)
+console.log('soy yo')
+ }
+    
 async function ValidarDocs(Id_documentos) {
     const response = confirm('¿Estas seguro que deseas aceptar la solicitud?')
     if (response) {
