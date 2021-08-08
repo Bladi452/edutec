@@ -1,4 +1,4 @@
-const { ipcRenderer, net } = require('electron');
+const { ipcRenderer, dialog } = require('electron');
 const axios = require('axios');
 var http = require('http'); 
 var fs = require('fs');
@@ -47,15 +47,10 @@ async function CancelarDocs(Id_documentos) {
     return;
 }
 async function getDocumentos(id) {
-
-    var file = fs.createWriteStream("file.jpg");
- var request = http.get(`http://localhost:3000/document/descarga/${id}`, function(response) { response.pipe(file); });
-    /*
-    const response = await axios.get(`http://localhost:3000/document/descarga/${id}`)
-      console.log(response)
- console.log(response.data)*/
-console.log('soy yo')
- }
+let date = new Date();
+ var request = http.get(`http://localhost:3000/document/descarga/${id}`,function(response) { response.pipe(file); });
+ var file = fs.createWriteStream(`${date}.png`);
+}
     
 async function ValidarDocs(Id_documentos) {
     const response = confirm('¿Estas seguro que deseas aceptar la solicitud?')
