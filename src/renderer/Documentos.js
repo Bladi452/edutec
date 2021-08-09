@@ -60,7 +60,7 @@ async function getDocumentos(id, nombre, matricula) {
 }
     
 function getImage (id, nombre, matricula){
-    image.innerHTML=`<img src='./upload/Escu20211015.png' width='400px' height='150px'>`    
+    image.innerHTML=`<img src='./upload/${nombre}${matricula}.png' width='auto' height='auto'>`    
 }
 async function ValidarDocs(Id_documentos) {
     const response = confirm('¿Estas seguro que deseas aceptar la solicitud?')
