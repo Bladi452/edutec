@@ -195,6 +195,17 @@ async function GetSolicitudAcep() {
     })
 }
 
+async function GetChatList() {
+    const con = await getconexion();
+    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, usuario.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN usuario ON usuario.Matricula = solicitud.Matricula INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = 20015 AND solicitud.Estatus = "Aceptado";'
+    await con.query(sql, [id_Escue], (error, results, fields) => {
+        if (error) {
+            console.log(error);
+        }
+        winHome.webContents.send('chatList', results)
+    })
+}
+
 async function GetSolicitudDene() {
     const con = await getconexion();
     const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, usuario.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN usuario ON usuario.Matricula = solicitud.Matricula INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = ? AND solicitud.Estatus = "Denegado"'
