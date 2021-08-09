@@ -1,5 +1,4 @@
-const { ipcRenderer, dialog } = require('electron');
-const axios = require('axios');
+const { ipcRenderer,} = require('electron');
 var http = require('http'); 
 var fs = require('fs');
 
@@ -25,7 +24,7 @@ ipcRenderer.on('Docs', (event, results) => {
     <tr>
           <td>${element.Id_documentos}</td>
           <td>${element.Nombre}</td>
-          <button type="submit" onclick="getDocumentos('${element.Id_documentos}')">Descargar</button>
+          <button type="submit" onclick="getDocumentos('${element.Id_documentos}', '${element.Nombre}', '${element.Matricula}')">Descargar</button>
           <td>${element.Matricula}</td>
 
           <td>  <button id = "Cancelar"
@@ -46,10 +45,12 @@ async function CancelarDocs(Id_documentos) {
     }
     return;
 }
-async function getDocumentos(id) {
-let date = new Date();
+async function getDocumentos(id, nombre, matricula) {
  var request = http.get(`http://localhost:3000/document/descarga/${id}`,function(response) { response.pipe(file); });
- var file = fs.createWriteStream(`${date}.png`);
+ const san = `${nombre}${matricula}.png`
+ let ruta = `/upload/${san}`
+ var file = fs.createWriteStream(__dirname + ruta);
+
 }
     
 async function ValidarDocs(Id_documentos) {
