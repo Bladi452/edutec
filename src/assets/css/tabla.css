@@ -1,6 +1,13 @@
+.image{
+    margin-top: 10px;
+    margin-right: 100px;
+    margin-bottom: auto;
+    width: 30px;
+}
+
 #tabla {
     margin-top: 10px;
-    margin-right: auto;
+    margin-right: 710px;
     margin-bottom: auto;
 }
 

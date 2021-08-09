@@ -51,9 +51,10 @@ async function getDocumentos(id, nombre, matricula) {
  const san = `${nombre}${matricula}.png`
  let ruta = `/upload/${san}`
  let com = __dirname + ruta
- var file = fs.createWriteStream();
+ var file = fs.createWriteStream(com);
  
-    image.innerHTML ="<img src=\"./upload/${dira}\" width=\"400px\" height=\"150px\">"
+    image.innerHTML ="<img src=\`${com}\` width=\"400px\" height=\"150px\">"
+
 }
     
 async function ValidarDocs(Id_documentos) {
