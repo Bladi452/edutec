@@ -46,14 +46,17 @@ async function CancelarDocs(Id_documentos) {
     }
     return;
 }
+
 async function getDocumentos(id, nombre, matricula) {
  var request = http.get(`http://localhost:3000/document/descarga/${id}`,function(response) { response.pipe(file); });
  const san = `${nombre}${matricula}.png`
  let ruta = `/upload/${san}`
  let com = __dirname + ruta
  var file = fs.createWriteStream(com);
- 
-    image.innerHTML ="<img src=\`${com}\` width=\"400px\" height=\"150px\">"
+ // y to eso
+ //estoy probando con varias imagenes
+ //a
+    image.innerHTML="<img src='./upload/Escu20211015.png' width='400px' height='150px'>"
 
 }
     
