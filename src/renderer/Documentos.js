@@ -56,7 +56,7 @@ async function getDocumentos(id, nombre, matricula) {
  // y to eso
  //estoy probando con varias imagenes
  //a
-    image.innerHTML="<img src='./upload/Escu20211015.png' width='400px' height='150px'>"
+    image.innerHTML=`<img src='./upload/Escu20211015.png' width='400px' height='150px'>`
 
 }
     
