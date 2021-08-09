@@ -3,9 +3,10 @@ var http = require('http');
 var fs = require('fs');
 
 let mylist;
-
+let image;
 
 document.addEventListener("DOMContentLoaded", function() {
+    image = document.getElementById("image")
     mylist = document.getElementById("mylist")
     renderGetProducts()
 setInterval('renderGetProducts()', 1000)
@@ -49,8 +50,10 @@ async function getDocumentos(id, nombre, matricula) {
  var request = http.get(`http://localhost:3000/document/descarga/${id}`,function(response) { response.pipe(file); });
  const san = `${nombre}${matricula}.png`
  let ruta = `/upload/${san}`
- var file = fs.createWriteStream(__dirname + ruta);
-
+ let com = __dirname + ruta
+ var file = fs.createWriteStream();
+ 
+    image.innerHTML ="<img src=\"./upload/${dira}\" width=\"400px\" height=\"150px\">"
 }
     
 async function ValidarDocs(Id_documentos) {
