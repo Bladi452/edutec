@@ -26,7 +26,7 @@ ipcRenderer.on('Docs', (event, results) => {
           <td>${element.Id_documentos}</td>
           <td>${element.Nombre}</td>
           <button type="submit" onclick="getDocumentos('${element.Id_documentos}', '${element.Nombre}', '${element.Matricula}')">Descargar</button>
-          <button type="submit" onclick="getImage('${element.Id_documentos}', '${element.Nombre}', '${element.Matricula}')">Visualizar</button>
+          <button type="submit" onclick="getImage('${element.Nombre}', '${element.Matricula}')">Visualizar</button>
           <td>${element.Matricula}</td>
 
           <td>  <button id = "Cancelar"
@@ -59,7 +59,7 @@ async function getDocumentos(id, nombre, matricula) {
  //a
 }
     
-function getImage (id, nombre, matricula){
+function getImage (nombre, matricula){
     image.innerHTML=`<img src='./upload/${nombre}${matricula}.png' width='auto' height='auto'>`    
 }
 async function ValidarDocs(Id_documentos) {
