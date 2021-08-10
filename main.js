@@ -197,12 +197,17 @@ async function GetSolicitudAcep() {
 
 async function GetChatList() {
     const con = await getconexion();
-    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, usuario.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN usuario ON usuario.Matricula = solicitud.Matricula INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = 20015 AND solicitud.Estatus = "Aceptado";'
+    let completpo = []
+    const sql = 'SELECT sala_usuario.Id_Sala FROM sala_usuario WHERE sala_usuario.Matricula = ?;'
+    const sql2 = 'SELECT sala_usuario.Id, sala_usuario.Id_Sala, sala_usuario.Matricula, usuario.Nombre FROM sala_usuario INNER JOIN usuario ON sala_usuario.Matricula = usuario.Matricula WHERE sala_usuario.Id_Sala = 1;'
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
         }
+      console.log(resultado)
+        /*
         winHome.webContents.send('chatList', results)
+    */
     })
 }
 
