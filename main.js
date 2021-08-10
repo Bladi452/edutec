@@ -198,13 +198,16 @@ async function GetSolicitudAcep() {
 async function GetChatList() {
     const con = await getconexion();
     let completpo = []
+    let resultado = []
     const sql = 'SELECT sala_usuario.Id_Sala FROM sala_usuario WHERE sala_usuario.Matricula = ?;'
-    const sql2 = 'SELECT sala_usuario.Id, sala_usuario.Id_Sala, sala_usuario.Matricula, usuario.Nombre FROM sala_usuario INNER JOIN usuario ON sala_usuario.Matricula = usuario.Matricula WHERE sala_usuario.Id_Sala = 1;'
+    const sql2 = 'SELECT sala_usuario.Id, sala_usuario.Id_Sala, sala_usuario.Matricula, usuario.Nombre FROM sala_usuario INNER JOIN usuario ON sala_usuario.Matricula = usuario.Matricula WHERE sala_usuario.Id_Sala = 2;'
+    
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
         }
       console.log(resultado)
+
         /*
         winHome.webContents.send('chatList', results)
     */
