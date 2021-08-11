@@ -1,3 +1,5 @@
+const { ipcRenderer,} = require('electron');
+
 let chat
 let lista;
 
@@ -7,9 +9,9 @@ document.addEventListener("DOMContentLoaded", function() {
     renderGetProducts()
 })
 
-function renderGetProducts() {
+async function renderGetProducts() {
 console.log('soy yo')
-
+ await ipcRenderer.invoke('getChatList')
 }
 /*
 

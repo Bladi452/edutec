@@ -10,10 +10,10 @@ let win;
 let winHome;
 
 //Se utiliza para tomar el campo Id que proviene desde el login.js e igualarlo a una variable global
-var Id_Admin;
+let Id_Admin;
 
 //Lo utilizamos para igualar el campo de la base de datos Id_Escuela que esta relacionado con el administrativo que inicio sesion
-var id_Escue;
+let id_Escue;
 
 //Recibe el Id de quien ingreso
 ipcMain.on('envio', (event, id) => {
@@ -206,11 +206,11 @@ async function GetChatList() {
     const sql = 'SELECT sala_usuario.Id_Sala FROM sala_usuario WHERE sala_usuario.Matricula = ?;'
     const sql2 = 'SELECT sala_usuario.Id, sala_usuario.Id_Sala, sala_usuario.Matricula, usuario.Nombre FROM sala_usuario INNER JOIN usuario ON sala_usuario.Matricula = usuario.Matricula WHERE sala_usuario.Id_Sala = 2;'
     
-    await con.query(sql, [id_Escue], (error, results, fields) => {
+    await con.query(sql, [Id_Admin], (error, results, fields) => {
         if (error) {
             console.log(error);
         }
-      console.log(resultado)
+      console.log(results[0].Id_Sala)
 
         /*
         winHome.webContents.send('chatList', results)
