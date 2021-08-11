@@ -12,7 +12,7 @@ setInterval('renderGetProducts()', 1000)
 
 
 async function renderGetProducts() {
-    await ipcRenderer.invoke('getChat')
+    await ipcRenderer.invoke('getChatList')
 }
 
 ipcRenderer.on('Docs', (_event, results) => {

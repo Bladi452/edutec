@@ -187,8 +187,18 @@ INSERT INTO `tipo_sala` (`id`, `Nombre`) VALUES (NULL, 'Admisiones'), (NULL, 'Gr
 
 --User--
 INSERT INTO `usuario` (`Matricula`, `Foto`, `Pass`, `Nombre`, `Apellido`, `Correo`, `Fecha_Nacimiento`, `Codigo_Escuelas`) VALUES ('20211015', NULL, '$2a$10$BgCEZop1Wmqa/Il7RSIJ2Ousb6nVVf.3xcJ8PqOQgr.QUV8HJ2XDK', 'Bladimir', 'Cleto Diaz', 'cleto662@gmail.com', '2002102', '20051');
+INSERT INTO `usuario` (`Matricula`, `Foto`, `Pass`, `Nombre`, `Apellido`, `Correo`, `Fecha_Nacimiento`, `Codigo_Escuelas`) VALUES ('20211016', NULL, '$2a$10$BgCEZop1Wmqa/Il7RSIJ2Ousb6nVVf.3xcJ8PqOQgr.QUV8HJ2XDK', 'Daniel', 'Perez Jerez', 'dpg@gmail.com', '2021-02-01', '20051');
+
 --cargo seleccionar--
 INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_Cargo`, `Matricula`) VALUES (NULL, '20051', '3', '20211015');
+INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_Cargo`, `Matricula`) VALUES (NULL, '20051', '1', '20211016');
+
+--sala--
+INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`) VALUES (NULL, 'Admisiones', '2021-08-12', '1'); 
+
+--sala usuario--
+INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, '1', '20211015'); 
+INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, '1', '20211016'); 
 
 CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
        FOR EACH ROW

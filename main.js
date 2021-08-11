@@ -100,9 +100,13 @@ ipcMain.handle("Aceptar_Canal", (event, obj) => {
     Aceptar_Solicitud(obj)
 })
 
+ipcMain.handle("getChatList", (event, obj) => {
+    GetChatList()
+})
+
 //Iniciamos la funcion pasandole el objeto que contiene los datos a validar
 const validarlogin = async (obj) =>  {
-
+    
     let usu = obj.usu;
     let con = obj.con;
     const conn = await getconexion();
@@ -197,7 +201,7 @@ async function GetSolicitudAcep() {
 
 async function GetChatList() {
     const con = await getconexion();
-    let completpo = []
+    let completado = []
     let resultado = []
     const sql = 'SELECT sala_usuario.Id_Sala FROM sala_usuario WHERE sala_usuario.Matricula = ?;'
     const sql2 = 'SELECT sala_usuario.Id, sala_usuario.Id_Sala, sala_usuario.Matricula, usuario.Nombre FROM sala_usuario INNER JOIN usuario ON sala_usuario.Matricula = usuario.Matricula WHERE sala_usuario.Id_Sala = 2;'
