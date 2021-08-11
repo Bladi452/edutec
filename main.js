@@ -202,16 +202,32 @@ async function GetSolicitudAcep() {
 const RecorerArray = (results)=>{
     let i = 0
     let messagesArray = []
-     let messagesArrayCom =[]
+    let messagesArrayCom
  while(i < results.length){
-   let Id =  results[i].Id_Sala;
-console.log(Id)
-   /*   
-    messagesArrayCom = new object(Id_Sala)   
-     messagesArray.push(messagesArrayCom)
-    */ }
-    console.log(messagesArrayCom)
+   let Id = results[i].Id_Sala;
+
+    messagesArrayCom = new {Id}
+    messagesArray.push(messagesArrayCom)
+}
+console.log(messagesArray)
    }
+
+   /*
+  const getMess = async()=>{
+   const messages = await getMessage(route.params.Id_sala_User);
+   let i = 0
+   let messagesArray = []
+    let messagesArrayCom =[]
+while(i < messages.length){
+  let id =  messages[i].id;
+  let text = messages[i].mensaje;
+  let fecha = messages[i].fecha;
+  let user = messages[i++].Matricula;
+    let messagesArrayCom = new object(id, text, fecha ,user  )
+    messagesArray.push(messagesArrayCom)
+  }
+  setMessage(messagesArray)
+  } */
 
 async function GetChatList() {
     const con = await getconexion();
