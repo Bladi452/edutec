@@ -199,20 +199,18 @@ async function GetSolicitudAcep() {
     })
 }
 
+   /*
 const RecorerArray = (results)=>{
     let i = 0
     let messagesArray = []
     let messagesArrayCom
  while(i < results.length){
    let Id = results[i].Id_Sala;
-
-    messagesArrayCom = new {Id}
+    messagesArrayCom = new Object(Id)
     messagesArray.push(messagesArrayCom)
 }
-console.log(messagesArray)
    }
 
-   /*
   const getMess = async()=>{
    const messages = await getMessage(route.params.Id_sala_User);
    let i = 0
@@ -239,7 +237,7 @@ async function GetChatList() {
         if (error) {
             console.log(error);
         }
-        RecorerArray(results)
+        console.log(JSON.stringify(results))
         /*
         winHome.webContents.send('chatList', results)
     */
