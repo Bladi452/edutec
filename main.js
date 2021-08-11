@@ -210,8 +210,9 @@ async function GetChatList() {
         if (error) {
             console.log(error);
         }
-      console.log(results[0].Id_Sala)
 
+      const response = results.reduce((acc, results) => Object.assign(acc, { ['Objetc']: Object.assign({ [results.Id_Sala]: results.Id_Sala }, acc[results.username] || { }) }), { });
+      console.log(response)
         /*
         winHome.webContents.send('chatList', results)
     */
