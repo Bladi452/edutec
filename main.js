@@ -239,10 +239,22 @@ async function GetChatList() {
         }else{
         let nab = results.length
         nab--
+        const executeSQL2 = async(resultados) =>{
+            await con.query(sql2, [resultados], (error, results2, fields )=>{
+              if (error) {
+                  console.log(error);
+              }else{
+              console.log(results2)
+              }
+            })   
+        }
         
         for (let i = 0; i <= nab; i++ ){
-            console.log((JSON.stringify(results[i].Id_Sala)))
-        }
+            let resultados = ((JSON.stringify(results[i].Id_Sala)))
+            console.log(resultados)
+            executeSQL2(resultados)
+            }
+         
 /*
         winHome.webContents.send('chatList', results)
     */
