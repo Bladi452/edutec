@@ -236,11 +236,17 @@ async function GetChatList() {
     await con.query(sql, [Id_Admin], (error, results, fields) => {
         if (error) {
             console.log(error);
+        }else{
+        let nab = results.length
+        nab--
+        
+        for (let i = 0; i <= nab; i++ ){
+            console.log((JSON.stringify(results[i].Id_Sala)))
         }
-        console.log(JSON.stringify(results))
-        /*
+/*
         winHome.webContents.send('chatList', results)
     */
+    }
     })
 }
 
