@@ -199,10 +199,23 @@ async function GetSolicitudAcep() {
     })
 }
 
+const RecorerArray = (results)=>{
+    let i = 0
+    let messagesArray = []
+     let messagesArrayCom =[]
+ while(i < results.length){
+   let Id =  results[i].Id_Sala;
+console.log(Id)
+   /*   
+    messagesArrayCom = new object(Id_Sala)   
+     messagesArray.push(messagesArrayCom)
+    */ }
+    console.log(messagesArrayCom)
+   }
+
 async function GetChatList() {
     const con = await getconexion();
-    let completado = []
-    let resultado = []
+
     const sql = 'SELECT sala_usuario.Id_Sala FROM sala_usuario WHERE sala_usuario.Matricula = ?;'
     const sql2 = 'SELECT sala_usuario.Id, sala_usuario.Id_Sala, sala_usuario.Matricula, usuario.Nombre FROM sala_usuario INNER JOIN usuario ON sala_usuario.Matricula = usuario.Matricula WHERE sala_usuario.Id_Sala = 2;'
     
@@ -210,9 +223,7 @@ async function GetChatList() {
         if (error) {
             console.log(error);
         }
-
-      const response = results.reduce((acc, results) => Object.assign(acc, { ['Objetc']: Object.assign({ [results.Id_Sala]: results.Id_Sala }, acc[results.username] || { }) }), { });
-      console.log(response)
+        RecorerArray(results)
         /*
         winHome.webContents.send('chatList', results)
     */

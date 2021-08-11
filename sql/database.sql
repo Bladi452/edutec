@@ -182,6 +182,7 @@ insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) value
 insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 5, 20051, 2021100 );
 
 insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 6, 20051, 2021100 );
+
 --Tipo_Sala--
 INSERT INTO `tipo_sala` (`id`, `Nombre`) VALUES (NULL, 'Admisiones'), (NULL, 'Grupales');
 
@@ -195,10 +196,10 @@ INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_
 
 --sala--
 INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`) VALUES (NULL, 'Admisiones', '2021-08-12', '1'); 
-
+INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`) VALUES (NULL, 'Admisiones', '2021-08-12', '1'); 
 --sala usuario--
-INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, '1', '20211015'); 
-INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, '1', '20211016'); 
+INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, NULL, '20211015'); 
+INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, '2', '20211016'); 
 
 CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
        FOR EACH ROW
