@@ -1,19 +1,17 @@
 let chat
-let mylist;
 let lista;
 
 document.addEventListener("DOMContentLoaded", function() {
     lista = document.getElementById("listaDeChat")
     chat = document.getElementById("chat")
-    mylist = document.getElementById("mylist")
     renderGetProducts()
-setInterval('renderGetProducts()', 1000)
 })
 
+function renderGetProducts() {
+console.log('soy yo')
 
-async function renderGetProducts() {
-    await ipcRenderer.invoke('getChatList')
 }
+/*
 
 ipcRenderer.on('Docs', (_event, results) => {
     let template = ""
@@ -38,7 +36,7 @@ onclick="CancelarDocs('${element.Id_documentos}')">x</button>
 
     mylist.innerHTML = template;
 })
-
+*/
 /*
 Mensaje del administrador
 <li class="self">
@@ -65,8 +63,7 @@ mensaje de la otra persona
 menu
 nombre del estudiante
 <div class="name">Alex</div>              
-         */
-
+  
 ipcRenderer.on('chatList', (event, results) => {
     let template = ""
     const list = results
@@ -82,4 +79,4 @@ ipcRenderer.on('chatList', (event, results) => {
     </li>`
     });
     lista.innerHTML = template;
-})
+})       */
