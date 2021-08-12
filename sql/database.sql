@@ -197,9 +197,12 @@ INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_
 --sala--
 INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`) VALUES (NULL, 'Admisiones', '2021-08-12', '1'); 
 INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`) VALUES (NULL, 'Admisiones', '2021-08-12', '1'); 
+INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`) VALUES (NULL, 'Admisiones', '2021-08-12', '1'); 
+
+
 --sala usuario--
 INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, NULL, '20211015'); 
-INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, '2', '20211016'); 
+INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, NULL, '20211016'); 
 
 CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
        FOR EACH ROW

@@ -231,7 +231,7 @@ async function GetChatList() {
     const con = await getconexion();
 
     const sql = 'SELECT sala_usuario.Id_Sala FROM sala_usuario WHERE sala_usuario.Matricula = ?;'
-    const sql2 = 'SELECT sala_usuario.Id, sala_usuario.Id_Sala, sala_usuario.Matricula, usuario.Nombre FROM sala_usuario INNER JOIN usuario ON sala_usuario.Matricula = usuario.Matricula WHERE sala_usuario.Id_Sala = 2;'
+    const sql2 = 'SELECT sala_usuario.Id, sala_usuario.Id_Sala, sala_usuario.Matricula, usuario.Nombre FROM sala_usuario INNER JOIN usuario ON sala_usuario.Matricula = usuario.Matricula WHERE sala_usuario.Id_Sala = ?;'
     
     await con.query(sql, [Id_Admin], (error, results, fields) => {
         if (error) {
@@ -248,11 +248,10 @@ async function GetChatList() {
               }
             })   
         }
-        
         for (let i = 0; i <= nab; i++ ){
             let resultados = ((JSON.stringify(results[i].Id_Sala)))
             console.log(resultados)
-            executeSQL2(resultados)
+           executeSQL2(resultados)
             }
          
 /*
