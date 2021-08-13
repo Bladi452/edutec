@@ -13,6 +13,27 @@ async function renderGetProducts() {
 console.log('soy yo')
  await ipcRenderer.invoke('getChatList')
 }
+
+ipcRenderer.on('chatList', (_event, results) => {
+    let template = ""
+    let tempa = ((JSON.stringify(results)))
+    let nuevo;
+    let list = []
+    list.push(tempa)
+    console.log(tempa.concat(nuevo))
+   // list.forEach(element => {
+     //   template += `
+       // <li class="list-group-item">
+        //<div class="media-body">
+          //  <center>
+           //     <strong>${element.Nombre}</strong>
+             //   <strong>Solicitud</strong>
+          //  </center>
+      //  </div>
+    //</li>`
+    });
+//    lista.innerHTML = template;
+
 /*
 
 ipcRenderer.on('Docs', (_event, results) => {

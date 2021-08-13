@@ -226,6 +226,7 @@ while(i < messages.length){
   }
   setMessage(messagesArray)
   } */
+  
 
 async function GetChatList() {
     const con = await getconexion();
@@ -239,23 +240,36 @@ async function GetChatList() {
         }else{
         let nab = results.length
         nab--
+        
+        
         const executeSQL2 = async(resultados) =>{
-            await con.query(sql2, [resultados], (error, results2, fields )=>{
+            await con.query(sql2, [resultados],(error, results2, fields )=>{
               if (error) {
                   console.log(error);
-              }else{
-              console.log(results2)
               }
-            })   
+               filtrado(results2)
+            })
         }
+       function RecorerArray(){
         for (let i = 0; i <= nab; i++ ){
             let resultados = ((JSON.stringify(results[i].Id_Sala)))
-            console.log(resultados)
            executeSQL2(resultados)
-            }
-         
+            }       
+        }
+        RecorerArray()
+            
+            const filtrado = (TuMaridoNegra)=>{
+                const mas = TuMaridoNegra.find( conta => conta.Matricula != Id_Admin);
+let uni = []
+                let messagesArrayCom = new Object(mas.RowDataPacket)
+       uni.push(messagesArrayCom)
+                console.log(messagesArrayCom)
+               // winHome.webContents.send('chatList',mas)
+        }
+        
 /*
-        winHome.webContents.send('chatList', results)
+        filtrado(contenedor)
+        
     */
     }
     })

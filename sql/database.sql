@@ -51,7 +51,6 @@ create table cargo_seleccionar(
     Matricula INT,
     FOREIGN KEY (Codigo_Escuelas) REFERENCES escuelas(Codigo_Escuelas),
     FOREIGN KEY (Id_Cargo) REFERENCES cargo (Id_Cargo),
-    FOREIGN KEY (Matricula) REFERENCES usuario(Matricula)
 )
 
 --Chats--
@@ -67,6 +66,7 @@ create table sala(
     Fecha DATE,
     id_Tipo int,
     FOREIGN KEY (id_Tipo) REFERENCES tipo_sala(id)
+    FOREIGN KEY (Codigo_Escuelas) REFERENCES escuelas(Codigo_Escuelas),
 )
 
 create table sala_usuario(
@@ -83,7 +83,7 @@ create table mensaje (
     mensaje VARCHAR (1638),
     id_Sala INT,
     Matricula INT,
-    fecha VARCHAR(40),
+    fecha DATE,
     FOREIGN KEY (Id_Sala) REFERENCES sala(id_Sala),
     FOREIGN KEY (Matricula) REFERENCES usuario(Matricula)
 )
@@ -91,7 +91,7 @@ create table mensaje (
 --Secundarias
 create table solicitud(
     Id_Solicitud INT PRIMARY KEY AUTO_INCREMENT,
-    Fecha VARCHAR(200),
+    Fecha DATE,
     Estatus VARCHAR(200),
     Codigo_Escuelas INT,
     Matricula INT,
