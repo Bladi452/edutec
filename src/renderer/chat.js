@@ -16,23 +16,21 @@ console.log('soy yo')
 
 ipcRenderer.on('chatList', (_event, results) => {
     let template = ""
-    let tempa = ((JSON.stringify(results)))
-    let nuevo;
-    let list = []
-    list.push(tempa)
-    console.log(tempa.concat(nuevo))
-   // list.forEach(element => {
-     //   template += `
-       // <li class="list-group-item">
-        //<div class="media-body">
-          //  <center>
-           //     <strong>${element.Nombre}</strong>
-             //   <strong>Solicitud</strong>
-          //  </center>
-      //  </div>
-    //</li>`
+    let list = results;
+    list.forEach(element => {
+        template += `
+        <li class="list-group-item">
+        <div class="media-body">
+            <center>
+                <strong>${element.Nombre}</strong>
+                <br/>
+                <strong>Solicitud</strong>
+            </center>
+        </div>
+    </li>`
     });
-//    lista.innerHTML = template;
+    lista.innerHTML = template;
+  });
 
 /*
 

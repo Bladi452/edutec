@@ -199,81 +199,20 @@ async function GetSolicitudAcep() {
     })
 }
 
-   /*
-const RecorerArray = (results)=>{
-    let i = 0
-    let messagesArray = []
-    let messagesArrayCom
- while(i < results.length){
-   let Id = results[i].Id_Sala;
-    messagesArrayCom = new Object(Id)
-    messagesArray.push(messagesArrayCom)
-}
-   }
-
-  const getMess = async()=>{
-   const messages = await getMessage(route.params.Id_sala_User);
-   let i = 0
-   let messagesArray = []
-    let messagesArrayCom =[]
-while(i < messages.length){
-  let id =  messages[i].id;
-  let text = messages[i].mensaje;
-  let fecha = messages[i].fecha;
-  let user = messages[i++].Matricula;
-    let messagesArrayCom = new object(id, text, fecha ,user  )
-    messagesArray.push(messagesArrayCom)
-  }
-  setMessage(messagesArray)
-  } */
-  
-
 async function GetChatList() {
     const con = await getconexion();
 
-    const sql = 'SELECT sala_usuario.Id_Sala FROM sala_usuario WHERE sala_usuario.Matricula = ?;'
-    const sql2 = 'SELECT sala_usuario.Id, sala_usuario.Id_Sala, sala_usuario.Matricula, usuario.Nombre FROM sala_usuario INNER JOIN usuario ON sala_usuario.Matricula = usuario.Matricula WHERE sala_usuario.Id_Sala = ?;'
+    const sql = 'SELECT * FROM sala WHERE Codigo_Escuelas = ?;'
     
-    await con.query(sql, [Id_Admin], (error, results, fields) => {
+    await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
         }else{
-        let nab = results.length
-        nab--
-        
-        
-        const executeSQL2 = async(resultados) =>{
-            await con.query(sql2, [resultados],(error, results2, fields )=>{
-              if (error) {
-                  console.log(error);
-              }
-               filtrado(results2)
-            })
-        }
-       function RecorerArray(){
-        for (let i = 0; i <= nab; i++ ){
-            let resultados = ((JSON.stringify(results[i].Id_Sala)))
-           executeSQL2(resultados)
-            }       
-        }
-        RecorerArray()
-            
-            const filtrado = (TuMaridoNegra)=>{
-                const mas = TuMaridoNegra.find( conta => conta.Matricula != Id_Admin);
-let uni = []
-                let messagesArrayCom = new Object(mas.RowDataPacket)
-       uni.push(messagesArrayCom)
-                console.log(messagesArrayCom)
-               // winHome.webContents.send('chatList',mas)
-        }
-        
-/*
-        filtrado(contenedor)
-        
-    */
+             winHome.webContents.send('chatList',results)
+        }     
     }
-    })
-}
+)}
+
 
 async function GetSolicitudDene() {
     const con = await getconexion();
