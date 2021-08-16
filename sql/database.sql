@@ -46,11 +46,11 @@ create table cargo(
 
 create table cargo_seleccionar(
     Id_Cargo_Seleccionar INT AUTO_INCREMENT PRIMARY KEY,
-    Codigo_Escuelas int,
     Id_Cargo int,
     Matricula INT,
+    Codigo_Escuelas int,
     FOREIGN KEY (Codigo_Escuelas) REFERENCES escuelas(Codigo_Escuelas),
-    FOREIGN KEY (Id_Cargo) REFERENCES cargo (Id_Cargo),
+    FOREIGN KEY (Id_Cargo) REFERENCES cargo (Id_Cargo)
 )
 
 --Chats--
@@ -65,8 +65,9 @@ create table sala(
     Nombre VARCHAR (30),
     Fecha DATE,
     id_Tipo int,
-    FOREIGN KEY (id_Tipo) REFERENCES tipo_sala(id)
-    FOREIGN KEY (Codigo_Escuelas) REFERENCES escuelas(Codigo_Escuelas),
+    Codigo_Escuelas int,
+    FOREIGN KEY (id_Tipo) REFERENCES tipo_sala(id),
+    FOREIGN KEY (Codigo_Escuelas) REFERENCES escuelas(Codigo_Escuelas)
 )
 
 create table sala_usuario(
@@ -149,7 +150,7 @@ drop table documentos
 insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20051', 'Politecnico Max Henriquez Ureña', 'Desde el año 2000 estamos dando nuestro mejor servicio para ustedes en las modalidades de Logistica, Refrigeracion, Contabilidad, Informatica, Electricidad y Electronica', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica' );
 insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20052', 'Liceo Juan Ramon Nuñez Castillo', 'Desde el año 2012 estamos dando nuestro mejor servicio para ustedes en los cursos de 1ro, 2do, 3ro, 4to, 5to, 6to ', 123213412.321 , 123123214.213, 'Extendida','General' );
 insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20053', 'Liceo Virgilio Casilla Minaya', 'Desde el año 2015 estamos dando nuestro mejor servicio para ustedes en las modalidades de Logistica Contabilidad, Informatica', 123213412.32131234213 , 123123214.215344323213, 'Extendida','Tecnica' );
-insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20054', 'Liceo federico henriquez y carvajal', 'Dirección: Calle Cnel. Rafael Fernández Domínguez, Santo Domingo, Impartimos Informatica, Marketing y Contabilidad', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica' );
+insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20055', 'Liceo federico henriquez y carvajal', 'Dirección: Calle Cnel. Rafael Fernández Domínguez, Santo Domingo, Impartimos Informatica, Marketing y Contabilidad', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica' );
 
 --Niveles
 INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Estudiante', '107');
@@ -195,9 +196,9 @@ INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_
 INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_Cargo`, `Matricula`) VALUES (NULL, '20051', '1', '20211016');
 
 --sala--
-INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`) VALUES (NULL, 'Admisiones', '2021-08-12', '1'); 
-INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`) VALUES (NULL, 'Admisiones', '2021-08-12', '1'); 
-INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`) VALUES (NULL, 'Admisiones', '2021-08-12', '1'); 
+INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`, `Codigo_Escuelas`) VALUES (NULL, 'Admisiones', '2021-08-12', '1', '20051'); 
+INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`, `Codigo_Escuelas`) VALUES (NULL, 'Admisiones', '2021-08-12', '1', '20052'); 
+INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`, `Codigo_Escuelas`) VALUES (NULL, 'Admisiones', '2021-08-12', '1', '20051'); 
 
 
 --sala usuario--
@@ -211,17 +212,15 @@ CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
 UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
 UPDATE curso_Escu SET Cupo = Cupo-1 WHERE ID_Curso = NEW.Id_Curso AND Codigo_Escuelas = NEW.Codigo_Escuelas;
 UPDATE cargo_seleccionar SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
-INSERT INTO sala_usuario (Id_Sala, Matricula) VALUES ( null, NEW.Matricula);
-INSERT INTO sala (Nombre, Fecha, id_Tipo) VALUES ('Admisiones',NOW(),'1');
-
+INSERT INTO sala_usuario (Id_Sala, Matricula) VALUES ((SELECT id_Sala FROM sala WHERE Codigo_Escuelas = NEW.Codigo_Escuelas) , NEW.Matricula);
        END IF;
    END
 
-CREATE TRIGGER insert_check AFTER INSERT ON sala
+CREATE TRIGGER insert_check AFTER INSERT ON escuelas
        FOR EACH ROW
        BEGIN
 
-    UPDATE sala_usuario SET Id_Sala = NEW.id_Sala WHERE Id = (SELECT Id FROM sala_usuario ORDER BY Id_Sala DESC LIMIT 1 );
+INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`, `Codigo_Escuelas`) VALUES (NULL, 'Admisiones', '2021-08-08', '1', NEW.Codigo_Escuelas);
 
    END
 
