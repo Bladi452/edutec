@@ -195,12 +195,6 @@ INSERT INTO `usuario` (`Matricula`, `Foto`, `Pass`, `Nombre`, `Apellido`, `Corre
 INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_Cargo`, `Matricula`) VALUES (NULL, '20051', '3', '20211015');
 INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_Cargo`, `Matricula`) VALUES (NULL, '20051', '1', '20211016');
 
---sala--
-INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`, `Codigo_Escuelas`) VALUES (NULL, 'Admisiones', '2021-08-12', '1', '20051'); 
-INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`, `Codigo_Escuelas`) VALUES (NULL, 'Admisiones', '2021-08-12', '1', '20052'); 
-INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`, `Codigo_Escuelas`) VALUES (NULL, 'Admisiones', '2021-08-12', '1', '20051'); 
-
-
 --sala usuario--
 INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, NULL, '20211015'); 
 INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, NULL, '20211016'); 

@@ -106,6 +106,11 @@ ipcMain.handle("getChatList", (event) => {
 
 ipcMain.handle("getChat", (event, obj) => {
     GetChat(obj)
+    GetSal(obj)
+})
+ipcMain.handle("SendMess", (event, obj, value) => {
+    SendMessage(obj)
+    console.log(obj)
 })
 //Iniciamos la funcion pasandole el objeto que contiene los datos a validar
 const validarlogin = async (obj) =>  {
@@ -168,6 +173,17 @@ async function GetDocs() {
     })
 }
 
+async function SendMessage(obj) {
+    const con = await getconexion();
+    const sql = 'INSERT INTO `mensaje` (`mensaje`, `id_Sala`, `Matricula`, `fecha`) VALUES (?, ?, ?, Now();'
+    con.query(sql, [  , obj, Id_Admin], (error, results, fields) => {
+        if (error) {
+            console.log(error);
+        }
+        GetEventos();
+    })
+}
+
 //Esta funcion pasa los datos de las solicitudes a cada escuela
 async function GetSolicitud() {
     const con = await getconexion();
@@ -188,6 +204,17 @@ async function GetEventos() {
             console.log(error)
         }
         winHome.webContents.send('eventos', results)
+    })
+}
+async function GetSal(obj) {
+    const con = await getconexion();
+    const sql = 'SELECT * FROM sala WHERE id_Sala = ? '
+    await con.query(sql, [obj], (error, results, fields) => {
+        if (error) {
+            console.log(error)
+        }
+        console.log(results)
+        winHome.webContents.send('getNom', results)
     })
 }
 
@@ -219,7 +246,7 @@ async function GetChatList() {
 async function GetChat(obj) {
     const con = await getconexion();
 
-    const sql = 'SELECT * FROM mensaje WHERE id_Sala = ?;'
+    const sql = 'SELECT mensaje.fecha, mensaje.mensaje, usuario.Nombre, sala.id_Sala ,sala.Nombre AS nombre_sala FROM mensaje INNER JOIN usuario ON mensaje.Matricula = usuario.Matricula INNER JOIN sala ON mensaje.id_Sala = sala.id_Sala WHERE mensaje.id_Sala = 1 ORDER BY `mensaje`.`fecha` ASC;  '
     
     await con.query(sql, [obj], (error, results, fields) => {
         if (error) {
@@ -230,6 +257,10 @@ async function GetChat(obj) {
         }     
     }
 )}
+
+//SELECT mensaje.fecha, mensaje.mensaje, usuario.Nombre FROM mensaje INNER JOIN usuario ON mensaje.Matricula = usuario.Matricula; 
+
+//
 
 async function GetSolicitudDene() {
     const con = await getconexion();

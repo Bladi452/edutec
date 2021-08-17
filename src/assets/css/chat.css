@@ -17,16 +17,12 @@
 }
 
 .back {
-    position: absolute;
-    width: 90px;
-    height: 50px;
-    top: 0px;
-    left: 23%;
-    color: #fff;
-    line-height: 50px;
+    width: 200px;
+    height: 10px;
+    left: 30%;
+    color: rgb(255, 255, 255);
     font-size: 30px;
     padding-left: 10px;
-    cursor: pointer;
 }
 .back img {
 	top: 5px;
