@@ -1,5 +1,5 @@
 const { ipcRenderer} = require('electron');
-
+let chat2
 let chat
 let lista;
 let encabezado
@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
     lista = document.getElementById("listaDeChat")
     chat = document.getElementById("chat")
     encabezado = document.getElementById("menu")
+    chat2 = document.getElementById("text")
     renderGetProducts()
 })
 
@@ -32,7 +33,6 @@ ipcRenderer.on('chatList', (_event, results) => {
   })
 // <div class="back"><i class="fa fa-chevron-left"></i> <img src="" draggable="false"/></div>
 ipcRenderer.on('getNom', (_event, results) => {
-  console.log(results)
   let template = ""
     const list = results
     list.forEach(element => {
@@ -49,12 +49,11 @@ ipcRenderer.on('getNom', (_event, results) => {
 
 
 async function ChatMess (id_sala) {
-     await ipcRenderer.invoke('getChat', id_sala)
-    }
+     await ipcRenderer.invoke('getChat', id_sala)  
+  }
 
 
 ipcRenderer.on('chat', (_event, results) => {
-  console.log(results)
   let template = ""
     const list = results
     list.forEach(element => {
@@ -68,14 +67,23 @@ ipcRenderer.on('chat', (_event, results) => {
         </div>
         </li>
       <center/>
-      <input class="textarea" type="text" placeholder="Type here!"/>
-<button class="enviar" type="submit" onclick="enviarMess(${element.id_Sala})" >Enviar</button>
     `
     });
 
-    chat.innerHTML = template;
-})
+    let con = `
+   <input class="textarea" type="text" id="textarea" placeholder="Type here!"/>
+   <button class="enviar" type="submit" onclick="enviarMess(${results[0].id_Sala})" >Enviar</button>`
+ 
+   chat2.innerHTML = con;
+   chat.innerHTML = template;
+ 
+  })
 
 async function enviarMess(obj){
-await ipcRenderer.invoke('SendMess', obj)
+  let area;
+  area = document.getElementById('textarea');
+  let areaVal = area.value
+  const noveno = {sala: obj, mensaje: areaVal}
+  console.log(noveno)
+  await ipcRenderer.invoke('SendMess', noveno)
 }

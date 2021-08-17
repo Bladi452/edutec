@@ -108,8 +108,8 @@ ipcMain.handle("getChat", (event, obj) => {
     GetChat(obj)
     GetSal(obj)
 })
-ipcMain.handle("SendMess", (event, obj, value) => {
-    SendMessage(obj)
+ipcMain.handle("SendMess", (event, obj) => {
+   // SendMessage(obj)
     console.log(obj)
 })
 //Iniciamos la funcion pasandole el objeto que contiene los datos a validar
@@ -213,7 +213,6 @@ async function GetSal(obj) {
         if (error) {
             console.log(error)
         }
-        console.log(results)
         winHome.webContents.send('getNom', results)
     })
 }
@@ -252,7 +251,6 @@ async function GetChat(obj) {
         if (error) {
             console.log(error);
         }else{
-            console.log(results)
            winHome.webContents.send('chat',results)
         }     
     }
@@ -340,7 +338,6 @@ async function Aceptar_Solicitud(obj) {
         GetSolicitudDene()
         GetSolicitudAcep()
     });
-    console.log(soy)
 }
 
 //Definimos la relacion entre el administrativo que inicio sesion y la escuela a la que pertenece
