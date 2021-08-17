@@ -225,9 +225,7 @@ async function GetChat(obj) {
         if (error) {
             console.log(error);
         }else{
-            console.log(obj)
-    console.log(results)
-    //        winHome.webContents.send('chatList',results)
+           winHome.webContents.send('chat',results)
         }     
     }
 )}

@@ -33,32 +33,25 @@ ipcRenderer.on('chatList', (_event, results) => {
      await ipcRenderer.invoke('getChat', id_sala)
   }
 
-/*
 
-ipcRenderer.on('Docs', (_event, results) => {
-    let template = ""
+
+ipcRenderer.on('chat', (_event, results) => {
+  let template = ""
     const list = results
     list.forEach(element => {
         template += ` 
-    <tr>
-          <td>${element.Id_documentos}</td>
-          <td>${element.Nombre}</td>
-          <button type="submit" onclick="getDocumentos('${element.Id_documentos}', '${element.Nombre}', '${element.Matricula}')">Descargar</button>
-          <button type="submit" onclick="getImage('${element.Nombre}', '${element.Matricula}')">Visualizar</button>
-          <td>${element.Matricula}</td>
-
-          <td>  <button id = "Cancelar"
-onclick="CancelarDocs('${element.Id_documentos}')">x</button>
-      <button id = "Aceptar"
-      onclick="ValidarDocs('${element.Id_documentos}')">✓</button>
-</td>
-          <tr>
+        <li class="self">
+        <div class="msg">
+          <p>${element.mensaje}</p>
+          <time>${element.fecha}</time>
+        </div>
+        </li>    
     `
     });
 
-    mylist.innerHTML = template;
+    chat.innerHTML = template;
 })
-*/
+
 /*
 Mensaje del administrador
 <li class="self">
