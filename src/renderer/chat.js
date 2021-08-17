@@ -36,6 +36,7 @@ ipcRenderer.on('chatList', (_event, results) => {
 
 
 ipcRenderer.on('chat', (_event, results) => {
+  console.log(results)
   let template = ""
     const list = results
     list.forEach(element => {
