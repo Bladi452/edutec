@@ -19,20 +19,18 @@ ipcRenderer.on('chatList', (_event, results) => {
     list.forEach(element => {
         template += `
         <li class="list-group-item">
-        <div class="media-body">
+        <div class="media-body" onclick="ChatMess(${element.id_Sala})">
             <center>
                 <strong>${element.Nombre}</strong>
-                <br/>
-                <strong>Solicitud</strong>
             </center>
         </div>
     </li>`
     });
     lista.innerHTML = template;
-  });
+  })
 
   async function ChatMess (id_sala) {
-     await ipcRenderer.invoke('getChat')
+     await ipcRenderer.invoke('getChat', id_sala)
   }
 
 /*

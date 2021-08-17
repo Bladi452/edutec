@@ -204,6 +204,8 @@ INSERT INTO `sala` (`id_Sala`, `Nombre`, `Fecha`, `id_Tipo`, `Codigo_Escuelas`) 
 --sala usuario--
 INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, NULL, '20211015'); 
 INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, NULL, '20211016'); 
+--Mensajes--
+INSERT INTO `mensaje` (`id`, `mensaje`, `id_Sala`, `Matricula`, `fecha`) VALUES (NULL, 'Soy yo', '2', '20211015', '2021-08-10'), (NULL, 'Que vienes a buscar', '2', '20211016', NULL);
 
 CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
        FOR EACH ROW

@@ -219,13 +219,15 @@ async function GetChatList() {
 async function GetChat(obj) {
     const con = await getconexion();
 
-    const sql = 'SELECT * FROM sala WHERE Codigo_Escuelas = ?;'
+    const sql = 'SELECT * FROM mensaje WHERE id_Sala = ?;'
     
-    await con.query(sql, [id_sala], (error, results, fields) => {
+    await con.query(sql, [obj], (error, results, fields) => {
         if (error) {
             console.log(error);
         }else{
-             winHome.webContents.send('chatList',results)
+            console.log(obj)
+    console.log(results)
+    //        winHome.webContents.send('chatList',results)
         }     
     }
 )}
