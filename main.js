@@ -109,7 +109,8 @@ ipcMain.handle("getChat", (event, obj) => {
     GetSal(obj)
 })
 ipcMain.handle("SendMess", (event, obj) => {
-   SendMessage(obj)
+    SendMessage(obj)
+    console.log(obj)
 })
 //Iniciamos la funcion pasandole el objeto que contiene los datos a validar
 const validarlogin = async (obj) =>  {
@@ -176,12 +177,12 @@ async function SendMessage(obj) {
     const con = await getconexion();
     let sala = obj.sala;
     let mensaje = obj.mensaje;
-    const sql = 'INSERT INTO `mensaje` (`mensaje`, `id_Sala`, `Matricula`, `fecha`) VALUES (?, ?, ?, Now();'
+    const sql = 'INSERT INTO `mensaje` (`mensaje`, `id_Sala`, `Matricula`, `fecha`) VALUES (?, ?, ?, Now());'
     con.query(sql, [ mensaje, sala, Id_Admin], (error, results, fields) => {
         if (error) {
             console.log(error);
         }
-        GetEventos();
+console.log(results)
     })
 }
 
@@ -252,10 +253,8 @@ async function GetChat(obj) {
         if (error) {
             console.log(error);
         }else{
-            new Notification({
-                title: "EduAtlas",
-                body: 'Mensaje enviado'
-            }).show()}     
+           winHome.webContents.send('chat',results)
+        }     
     }
 )}
 
