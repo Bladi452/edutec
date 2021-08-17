@@ -100,10 +100,13 @@ ipcMain.handle("Aceptar_Canal", (event, obj) => {
     Aceptar_Solicitud(obj)
 })
 
-ipcMain.handle("getChatList", (event, obj) => {
+ipcMain.handle("getChatList", (event) => {
     GetChatList()
 })
 
+ipcMain.handle("getChat", (event, obj) => {
+    GetChat(obj)
+})
 //Iniciamos la funcion pasandole el objeto que contiene los datos a validar
 const validarlogin = async (obj) =>  {
     
@@ -213,6 +216,19 @@ async function GetChatList() {
     }
 )}
 
+async function GetChat(obj) {
+    const con = await getconexion();
+
+    const sql = 'SELECT * FROM sala WHERE Codigo_Escuelas = ?;'
+    
+    await con.query(sql, [id_sala], (error, results, fields) => {
+        if (error) {
+            console.log(error);
+        }else{
+             winHome.webContents.send('chatList',results)
+        }     
+    }
+)}
 
 async function GetSolicitudDene() {
     const con = await getconexion();

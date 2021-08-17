@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", function() {
 })
 
 async function renderGetProducts() {
-console.log('soy yo')
  await ipcRenderer.invoke('getChatList')
 }
 
@@ -31,6 +30,10 @@ ipcRenderer.on('chatList', (_event, results) => {
     });
     lista.innerHTML = template;
   });
+
+  async function ChatMess (id_sala) {
+     await ipcRenderer.invoke('getChat')
+  }
 
 /*
 
