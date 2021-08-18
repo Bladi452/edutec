@@ -247,12 +247,13 @@ async function GetChatList() {
 async function GetChat(obj) {
     const con = await getconexion();
 
-    const sql = 'SELECT mensaje.fecha, mensaje.mensaje, usuario.Nombre, sala.id_Sala ,sala.Nombre AS nombre_sala FROM mensaje INNER JOIN usuario ON mensaje.Matricula = usuario.Matricula INNER JOIN sala ON mensaje.id_Sala = sala.id_Sala WHERE mensaje.id_Sala = 1 ORDER BY `mensaje`.`fecha` ASC;  '
+    const sql = 'SELECT mensaje.fecha, mensaje.mensaje, usuario.Nombre, sala.id_Sala ,sala.Nombre AS nombre_sala FROM mensaje INNER JOIN usuario ON mensaje.Matricula = usuario.Matricula INNER JOIN sala ON mensaje.id_Sala = sala.id_Sala WHERE mensaje.id_Sala = ? ORDER BY `mensaje`.`fecha` ASC;  '
     
     await con.query(sql, [obj], (error, results, fields) => {
         if (error) {
             console.log(error);
         }else{
+            console.log(results)
            winHome.webContents.send('chat',results)
         }     
     }

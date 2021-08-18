@@ -1,6 +1,10 @@
+#pane{
+  left: 400px;
+}
+
 #panelR{
     background-color: #FA9A60;
-position:initial;
+position:fixed;
     float: left;
 bottom: 0px;
 left: 0px;

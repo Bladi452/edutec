@@ -1,4 +1,6 @@
-
+#pane{
+    left: 400px;
+  }
     strong{
     color: #c5a4a4;
     font-size:x-large;
