@@ -61,7 +61,7 @@ ipcRenderer.on('chat', (_event, results) => {
         <li class="self">
         <div class="msg">
 <p>${element.Nombre}:</p>
-        <p>${element.mensaje}</p>
+        <p id="num">${element.mensaje}</p>
           <time>${element.fecha}</time>
         </div>
         </li>

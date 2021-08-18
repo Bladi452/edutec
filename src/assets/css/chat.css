@@ -2,10 +2,9 @@
 	background-color:#FBD603;
 	height: 50px;
 }
-.divChat{
-	background-color: blue;
-}
+
 .menu {
+    max-width:1200px;
     position:fixed;
     top: 31px;
     left: 400px;
@@ -18,10 +17,11 @@
 }
 .messageMarge {
 width: 30px;
+height: auto;
 }
 .back {
     width: 200px;
-    height: 10px;
+    height: auto;
     left: 30%;
     color: rgb(255, 255, 255);
     font-size: 30px;
@@ -32,7 +32,7 @@ width: 30px;
     position: absolute;
     left: 30px;
     width: 40px;
-    height: 40px;
+    height: autopx;
     background-color: rgba(255,255,255,0.98);
     border-radius: 100%;
     -webkit-border-radius: 100%;
@@ -68,22 +68,23 @@ width: 30px;
 /* M E S S A G E S */
 
 .chat {
+    height: auto;
     list-style: none;
     background: none;
-    margin-left:400px;
+    margin-left:0px;
     padding: 0 0 50px 0;
     margin-top: 60px;
-    margin-bottom: 10px;
 }
 .chat li {
     padding: 0.5rem;
     overflow: hidden;
     display: flex;
+    height: auto;
 }
 
 .other .msg {
-    margin-left:40px;
-	align-self: center;
+    width: 30px;
+    margin-left:2px;
     order: 1;
     border-top-left-radius: 0px;
     box-shadow: -1px 2px 0px #D4D4D4;
@@ -93,7 +94,6 @@ width: 30px;
     position: relative;
     top: 0px;
     right: 0px;
-    left: 40px;
     width: 0px;
     height: 0px;
     border: 5px solid #fff;
@@ -102,25 +102,34 @@ width: 30px;
 }
 
 .self {
-    justify-content:center;
+    max-width: 100%;
 }
 .self .msg {
-	margin-left:900px;
-    order: 1;
-    border-bottom-right-radius: 0px;
-    box-shadow: 1px 2px 0px #D4D4D4;
+    background: #ebebeb none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #646464;
+    font-size: 14px;
+    margin: 0;
+    padding: 5px 10px 5px 12px;
+    width: 100%;
+    overflow:auto;
 }
 .msg {
-    background: white;
-    min-width: 50px;
-    padding: 10px;
-    border-radius: 2px;
-    box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.07);
+    display: inline-block;
+    padding: 0 0 0 10px;
+    vertical-align: top;
+    width: 92%;
+    height: auto
+    ;
 }
-.msg p {
-    font-size: 0.8rem;
-    margin: 0 0 0.2rem 0;
-    color: #777;
+.msg p {  background: #ebebeb none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #646464;
+    font-size: 14px;
+    margin: 0;
+    margin-right: 29px;
+    padding: 5px 10px 5px 12px;
+    height: auto;
 }
 
 .msg time {
