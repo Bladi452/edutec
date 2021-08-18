@@ -20,7 +20,6 @@ ipcRenderer.on('chatList', (_event, results) => {
     let list = results;
     list.forEach(element => {
         template += `
- 
         <li class="list-group-item">
         <div class="media-body" onclick="ChatMess(${element.id_Sala})">
             <center>

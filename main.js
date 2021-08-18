@@ -182,7 +182,7 @@ async function SendMessage(obj) {
         if (error) {
             console.log(error);
         }
-console.log(results)
+        GetChat(sala)
     })
 }
 

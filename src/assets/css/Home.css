@@ -1,6 +1,12 @@
 #panelR{
     background-color: #FA9A60;
-}
+position:initial;
+    float: left;
+bottom: 0px;
+left: 0px;
+right: 0px;
+top: 0;
+  }
     strong{
     color: #ffffff;
     font-size:x-large;
