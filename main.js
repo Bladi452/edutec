@@ -110,7 +110,6 @@ ipcMain.handle("getChat", (event, obj) => {
 })
 ipcMain.handle("SendMess", (event, obj) => {
     SendMessage(obj)
-    console.log(obj)
 })
 //Iniciamos la funcion pasandole el objeto que contiene los datos a validar
 const validarlogin = async (obj) =>  {
@@ -192,7 +191,7 @@ async function GetSolicitud() {
     const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, usuario.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN usuario ON usuario.Matricula = solicitud.Matricula INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = ? AND solicitud.Estatus = "null"';
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
-            console.log();
+            console.log(error);
         }
         winHome.webContents.send('solicitudes', results)
     })
@@ -247,13 +246,12 @@ async function GetChatList() {
 async function GetChat(obj) {
     const con = await getconexion();
 
-    const sql = 'SELECT mensaje.fecha, mensaje.mensaje, usuario.Nombre, sala.id_Sala ,sala.Nombre AS nombre_sala FROM mensaje INNER JOIN usuario ON mensaje.Matricula = usuario.Matricula INNER JOIN sala ON mensaje.id_Sala = sala.id_Sala WHERE mensaje.id_Sala = ? ORDER BY `mensaje`.`fecha` ASC;  '
+    const sql = 'SELECT mensaje.fecha, mensaje.mensaje, usuario.Nombre, sala.id_Sala ,sala.Nombre AS nombre_sala FROM mensaje INNER JOIN usuario ON mensaje.Matricula = usuario.Matricula INNER JOIN sala ON mensaje.id_Sala = sala.id_Sala WHERE mensaje.id_Sala = ? ORDER BY `mensaje`.`fecha` DESC;'
     
     await con.query(sql, [obj], (error, results, fields) => {
         if (error) {
             console.log(error);
         }else{
-            console.log(results)
            winHome.webContents.send('chat',results)
         }     
     }

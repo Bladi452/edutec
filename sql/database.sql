@@ -146,61 +146,7 @@ DROP table cargo_seleccionar
 drop table eventos
 drop table documentos
 
---Escuelas---
-insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20051', 'Politecnico Max Henriquez Ureña', 'Desde el año 2000 estamos dando nuestro mejor servicio para ustedes en las modalidades de Logistica, Refrigeracion, Contabilidad, Informatica, Electricidad y Electronica', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica' );
-insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20052', 'Liceo Juan Ramon Nuñez Castillo', 'Desde el año 2012 estamos dando nuestro mejor servicio para ustedes en los cursos de 1ro, 2do, 3ro, 4to, 5to, 6to ', 123213412.321 , 123123214.213, 'Extendida','General' );
-insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20053', 'Liceo Virgilio Casilla Minaya', 'Desde el año 2015 estamos dando nuestro mejor servicio para ustedes en las modalidades de Logistica Contabilidad, Informatica', 123213412.32131234213 , 123123214.215344323213, 'Extendida','Tecnica' );
-insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20054', 'Liceo federico henriquez y carvajal', 'Dirección: Calle Cnel. Rafael Fernández Domínguez, Santo Domingo, Impartimos Informatica, Marketing y Contabilidad', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica' );
-
---Niveles
-INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Estudiante', '107');
-INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Profesores', '106');
-INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Secretaria', '105');
-INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Orientadores', '104');
-INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Coordinador Modalidad General', '103');
-INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Coordinador Tecnico', '102');
-INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Coordinador General', '101');
-INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Director', '100');
-
---Curso--
-
-insert into curso (Grado) values ('1ro');
-insert into curso (Grado) values ('2ro');
-insert into curso (Grado) values ('3ro');
-insert into curso (Grado) values ('4to');
-insert into curso (Grado) values ('5to');
-insert into curso (Grado) values ('6to');
-
---Curso_Escu--
-insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 1, 20051, 2021100 );
-
-insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 2, 20051, 2021101 );
-
-insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 3, 20051, 2021102 );
-
-insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 4, 20051, 2021103 );
-
-insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 5, 20051, 2021100 );
-
-insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 6, 20051, 2021100 );
-
---Tipo_Sala--
-INSERT INTO `tipo_sala` (`id`, `Nombre`) VALUES (NULL, 'Admisiones'), (NULL, 'Grupales');
-
---User--
-INSERT INTO `usuario` (`Matricula`, `Foto`, `Pass`, `Nombre`, `Apellido`, `Correo`, `Fecha_Nacimiento`, `Codigo_Escuelas`) VALUES ('20211015', NULL, '$2a$10$BgCEZop1Wmqa/Il7RSIJ2Ousb6nVVf.3xcJ8PqOQgr.QUV8HJ2XDK', 'Bladimir', 'Cleto Diaz', 'cleto662@gmail.com', '2002102', '20051');
-INSERT INTO `usuario` (`Matricula`, `Foto`, `Pass`, `Nombre`, `Apellido`, `Correo`, `Fecha_Nacimiento`, `Codigo_Escuelas`) VALUES ('20211016', NULL, '$2a$10$BgCEZop1Wmqa/Il7RSIJ2Ousb6nVVf.3xcJ8PqOQgr.QUV8HJ2XDK', 'Daniel', 'Perez Jerez', 'dpg@gmail.com', '2021-02-01', '20051');
-
---cargo seleccionar--
-INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_Cargo`, `Matricula`) VALUES (NULL, '20051', '3', '20211015');
-INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_Cargo`, `Matricula`) VALUES (NULL, '20051', '1', '20211016');
-
---sala usuario--
-INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, NULL, '20211015'); 
-INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, NULL, '20211016'); 
---Mensajes--
-INSERT INTO `mensaje` (`id`, `mensaje`, `id_Sala`, `Matricula`, `fecha`) VALUES (NULL, 'Soy yo', '3', '20211015', '2021-08-10'), (NULL, 'Que vienes a buscar', '3', '20211016', NULL);
-
+--triggers--
 CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
        FOR EACH ROW
        BEGIN
@@ -227,6 +173,62 @@ CREATE TRIGGER insert_Agrega_Quien_Agrego AFTER INSERT ON solicitud_Add_User
     INSERT INTO sala_usuario (Id_Sala, Matricula) SELECT Id_Sala, NEW.Matricula FROM sala_usuario ORDER BY Id_Sala DESC LIMIT 1 ;
 
    END
+
+--Tipo_Sala--
+INSERT INTO `tipo_sala` (`id`, `Nombre`) VALUES (NULL, 'Admisiones'), (NULL, 'Grupales');
+
+--Escuelas---
+insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20051', 'Politecnico Max Henriquez Ureña', 'Desde el año 2000 estamos dando nuestro mejor servicio para ustedes en las modalidades de Logistica, Refrigeracion, Contabilidad, Informatica, Electricidad y Electronica', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica' );
+insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20052', 'Liceo Juan Ramon Nuñez Castillo', 'Desde el año 2012 estamos dando nuestro mejor servicio para ustedes en los cursos de 1ro, 2do, 3ro, 4to, 5to, 6to ', 123213412.321 , 123123214.213, 'Extendida','General' );
+insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20053', 'Liceo Virgilio Casilla Minaya', 'Desde el año 2015 estamos dando nuestro mejor servicio para ustedes en las modalidades de Logistica Contabilidad, Informatica', 123213412.32131234213 , 123123214.215344323213, 'Extendida','Tecnica' );
+insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20054', 'Liceo federico henriquez y carvajal', 'Dirección: Calle Cnel. Rafael Fernández Domínguez, Santo Domingo, Impartimos Informatica, Marketing y Contabilidad', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica' );
+
+--Niveles
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Estudiante', '107');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Profesores', '106');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Secretaria', '105');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Orientadores', '104');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Coordinador Modalidad General', '103');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Coordinador Tecnico', '102');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Coordinador General', '101');
+INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Director', '100');
+
+--Curso--
+insert into curso (Grado) values ('1ro');
+insert into curso (Grado) values ('2ro');
+insert into curso (Grado) values ('3ro');
+insert into curso (Grado) values ('4to');
+insert into curso (Grado) values ('5to');
+insert into curso (Grado) values ('6to');
+
+--Curso_Escu--
+insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 1, 20051, 2021100 );
+
+insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 2, 20051, 2021101 );
+
+insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 3, 20051, 2021102 );
+
+insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 4, 20051, 2021103 );
+
+insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 5, 20051, 2021100 );
+
+insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) values ('Extendido', 30, 6, 20051, 2021100 );
+
+
+--User--
+INSERT INTO `usuario` (`Matricula`, `Foto`, `Pass`, `Nombre`, `Apellido`, `Correo`, `Fecha_Nacimiento`, `Codigo_Escuelas`) VALUES ('20211015', NULL, '$2a$10$BgCEZop1Wmqa/Il7RSIJ2Ousb6nVVf.3xcJ8PqOQgr.QUV8HJ2XDK', 'Bladimir', 'Cleto Diaz', 'cleto662@gmail.com', '2002102', '20051');
+INSERT INTO `usuario` (`Matricula`, `Foto`, `Pass`, `Nombre`, `Apellido`, `Correo`, `Fecha_Nacimiento`, `Codigo_Escuelas`) VALUES ('20211016', NULL, '$2a$10$BgCEZop1Wmqa/Il7RSIJ2Ousb6nVVf.3xcJ8PqOQgr.QUV8HJ2XDK', 'Daniel', 'Perez Jerez', 'dpg@gmail.com', '2021-02-01', '20051');
+
+--cargo seleccionar--
+INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_Cargo`, `Matricula`) VALUES (NULL, '20051', '3', '20211015');
+INSERT INTO `cargo_seleccionar` (`Id_Cargo_Seleccionar`, `Codigo_Escuelas`, `Id_Cargo`, `Matricula`) VALUES (NULL, '20051', '1', '20211016');
+
+--sala usuario--
+INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, NULL, '20211015'); 
+INSERT INTO `sala_usuario` (`Id`, `Id_Sala`, `Matricula`) VALUES (NULL, NULL, '20211016'); 
+--Mensajes--
+INSERT INTO `mensaje` (`id`, `mensaje`, `id_Sala`, `Matricula`, `fecha`) VALUES (NULL, 'Soy yo', '3', '20211015', '2021-08-10'), (NULL, 'Que vienes a buscar', '3', '20211016', NULL);
+
 
 DROP TRIGGER upd_check
 DROP TRIGGER insert_check
