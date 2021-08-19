@@ -3,18 +3,23 @@ let chat2
 let chat
 let lista;
 let encabezado
+
 document.addEventListener("DOMContentLoaded", function() {
     lista = document.getElementById("listaDeChat")
     chat = document.getElementById("chat")
     encabezado = document.getElementById("menu")
     chat2 = document.getElementById("text")
     renderGetProducts()
-})
+    updateScroll
+  })
 
 async function renderGetProducts() {
  await ipcRenderer.invoke('getChatList')
 }
-
+function updateScroll(){
+  var element = document.getElementById("list-group-item");
+  element.scrollTop = element.scrollHeight;
+}
 ipcRenderer.on('chatList', (_event, results) => {
     let template = ""
     let list = results;
