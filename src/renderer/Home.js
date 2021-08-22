@@ -1,8 +1,9 @@
 const { ipcRenderer,} = require('electron');
 let mylist;
-
+let contador;
 document.addEventListener("DOMContentLoaded", function() {
     mylist = document.getElementById("mylist")
+    contador = document.getElementById("contador")
     renderGetProducts()
 setInterval('renderGetProducts()', 1000)    
 })
@@ -11,6 +12,15 @@ setInterval('renderGetProducts()', 1000)
 async function renderGetProducts() {
     await ipcRenderer.invoke('get')
 }
+
+ipcRenderer.on('contador', (event, results) => {
+
+    let template = `<h3> Total Solicitud: ${results.length} </h3>`
+
+    contador.innerHTML = template;
+
+})
+
 
 ipcRenderer.on('solicitudes', (event, results) => {
     let template = ""

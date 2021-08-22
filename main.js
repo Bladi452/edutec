@@ -194,6 +194,7 @@ async function GetSolicitud() {
             console.log(error);
         }
         winHome.webContents.send('solicitudes', results)
+        winHome.webContents.send('contador', results)
     })
 }
 
@@ -220,12 +221,13 @@ async function GetSal(obj) {
 
 async function GetSolicitudAcep() {
     const con = await getconexion();
-    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, usuario.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN usuario ON usuario.Matricula = solicitud.Matricula INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = 20015 AND solicitud.Estatus = "Aceptado";'
+    const sql = 'SELECT solicitud.Id_Solicitud, solicitud.Fecha, solicitud.Estatus, usuario.Matricula, curso.Grado, escuelas.Nombre FROM solicitud INNER JOIN curso ON solicitud.Id_Curso = curso.ID_Curso INNER JOIN usuario ON usuario.Matricula = solicitud.Matricula INNER JOIN escuelas ON solicitud.Codigo_Escuelas = escuelas.Codigo_Escuelas WHERE solicitud.Codigo_Escuelas = ? AND solicitud.Estatus = "Aprobado";'
     await con.query(sql, [id_Escue], (error, results, fields) => {
         if (error) {
             console.log(error);
         }
         winHome.webContents.send('solicitudesNew', results)
+        winHome.webContents.send('contadorAcep', results.length)
     })
 }
 
@@ -269,6 +271,7 @@ async function GetSolicitudDene() {
             console.log(error);
         }
         winHome.webContents.send('solicitudesDene', results)
+        winHome.webContents.send('contadorDen', results)
     })
 }
 
@@ -282,10 +285,11 @@ async function AgregarEvent(obj2) {
         GetEventos();
     })
 }
-
+ 
 async function Denegar_Solicitud(obj) {
     const con = await getconexion();
-    const sql = 'UPDATE solicitud SET Estatus = "Denegado" WHERE solicitud.Matricula=?'
+ 
+    const sql = "UPDATE `solicitud` SET `Estatus` = 'Denegado' WHERE `solicitud`.`Id_Solicitud` = ?;"
     con.query(sql, [obj], (error, results, fields) => {
         if (error) {
             console.log(error)
@@ -321,25 +325,18 @@ async function Aceptar_documentos(obj) {
 
 async function Aceptar_Solicitud(obj) {
     const con = await getconexion();
-    const sql = 'UPDATE solicitud SET Estatus = "Aceptado",  WHERE solicitud.Matricula=?'
-   
+    const sql = "UPDATE `solicitud` SET `Estatus` = 'Aprobado' WHERE `solicitud`.`Id_Solicitud` = ?;"
+    
     con.query(sql, [obj], (error, results, fields) => {
         if (error) {
             console.log(error)
         }
+
     });
 
-    const sql2 = 'INSERT INTO `solicitud_Add_User` (`Id_Solicitud`, `Matricula`) VALUES ( ?, ?)'
 
-    con.query(sql2, [id_Escue] ,[obj], (error, results, fields) => {
-        if (error) {
-            console.log(error)
-        }
-        GetSolicitud()
-        GetSolicitudDene()
-        GetSolicitudAcep()
-    });
-}
+
+} 
 
 //Definimos la relacion entre el administrativo que inicio sesion y la escuela a la que pertenece
 async function idEscu() {

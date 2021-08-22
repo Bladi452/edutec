@@ -14,6 +14,13 @@ async function renderGetProducts() {
     await ipcRenderer.invoke('getAceptar')
 }
 
+
+ipcRenderer.on('contadorAcep', (event, results) => {
+    let template = `<h3> Total Solicitud: ${results} </h3>`
+
+    contador.innerHTML = template;
+    })
+
 ipcRenderer.on('solicitudesNew', (event, results) => {
     let template = ""
     const list = results
@@ -26,9 +33,6 @@ ipcRenderer.on('solicitudesNew', (event, results) => {
           <td>${element.Matricula}</td>
           <td>${element.Nombre}</td>
           <td>${element.Estatus}</td>       
-<td>  <button id = "Cancelar" 
-onclick="CancelarSol('${element.Id_Solicitud}')">x</button>
-</td>
           <tr>
     `
     });

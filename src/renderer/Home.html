@@ -18,9 +18,7 @@
     <div class="window">
         <header class="toolbar toolbar-header">
             <p id="titulo" class="title" style="color:#4A4A4A">
-                <b> Edutec </b>
-
-                <button id="mini"><img src="../assets/imagenes/cerrar.png" width="20px"></button>
+                <b> EduAtlas </b>
             </p>
 
         </header>
@@ -34,7 +32,9 @@
             <ul class="list-group">
                 <li class="list-group-header">
                     <center>
-                        <img src="../assets/imagenes/birrete (1).svg" width="150">
+                        <button id ="mini" onclick="Solicitud()">
+                            <img src="../assets/imagenes/birrete (1).svg" width="150"> 
+                        </button>  
                     </center>
                 </li>
                 <li class="list-group-item" onclick="Solicitud()">
@@ -92,6 +92,9 @@
                     <p id="letrero">
                         <b>Solicitudes pendientes </b>
                     </p>
+                    <div id="contador">
+                        
+                    </div>
                     <div id="tabla" width="70px">
                         <table class="styled-table">
                             <thead>
@@ -111,6 +114,7 @@
                         </table>
 
                     </center>
+                    
                     </div>
                 </div>
             </div>

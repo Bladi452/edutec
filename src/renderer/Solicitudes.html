@@ -21,7 +21,6 @@
             <p id="titulo" class="title" style="color:#4A4A4A">
                 <b> EduAtlas </b>
 
-                <button id="mini"><img src="../assets/imagenes/cerrar.png" width="20px" onclick="closed();"></button>
             </p>
 
         </header>
@@ -34,7 +33,9 @@
             <ul class="list-group">
                 <li class="list-group-header">
                     <center>
-                        <img src="../assets/imagenes/birrete (1).svg" width="150">
+                        <button id ="mini" onclick="Solicitud()">
+                            <img src="../assets/imagenes/birrete (1).svg" width="150"> 
+                        </button>   
                     </center>
                 </li>
                 <li class="list-group-item" onclick="Solicitud()">
@@ -58,9 +59,9 @@
                     <div class="media-body">
                         <center>
                             <strong>Documentos</strong>
-                        </center>
+                       </center>
                     </div>
-                </li>
+                 </li>
 
                 <li class="list-group-item" onclick="Chat()">
                     <div class="media-body">
@@ -93,6 +94,10 @@
                     <p id="letrero">
                         <b>Completadas</b>
                     </p>
+                    <div id="contador">
+                        
+                    </div>
+
                     <div id="tabla" width="70px">
                         <table class="styled-table">
                             <thead>
@@ -103,7 +108,6 @@
                                     <th>Matricula</th>
                                     <th>Escuela</th>
                                     <th>Status</th>
-                                    <th>Denegar</th>
                                 </tr>
                             </thead>
                             <tbody id="mylist">

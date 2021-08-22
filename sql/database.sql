@@ -40,7 +40,7 @@ create table curso_Escu (
     Codigo_Escuelas INT,
     Matricula INT,
     Modalidad INT,
-    Estatus VARCHAR(300)
+    Estatus VARCHAR(300),
     FOREIGN KEY (ID_Curso) REFERENCES curso(ID_Curso),
     FOREIGN KEY (Codigo_Escuelas) REFERENCES escuelas(Codigo_Escuelas),
     FOREIGN KEY (Matricula) REFERENCES usuario(Matricula),
@@ -187,10 +187,10 @@ CREATE TRIGGER insert_Agrega_Quien_Agrego AFTER INSERT ON solicitud_Add_User
 INSERT INTO `tipo_sala` (`id`, `Nombre`) VALUES (NULL, 'Admisiones'), (NULL, 'Grupales');
 
 --Escuelas---
-insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20051', 'Politecnico Max Henriquez Ureña', 'Desde el año 2000 estamos dando nuestro mejor servicio para ustedes en las modalidades de Logistica, Refrigeracion, Contabilidad, Informatica, Electricidad y Electronica', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica', 1 );
-insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20052', 'Liceo Juan Ramon Nuñez Castillo', 'Desde el año 2012 estamos dando nuestro mejor servicio para ustedes en los cursos de 1ro, 2do, 3ro, 4to, 5to, 6to ', 123213412.321 , 123123214.213, 'Extendida','General', 1 );
-insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20053', 'Liceo Virgilio Casilla Minaya', 'Desde el año 2015 estamos dando nuestro mejor servicio para ustedes en las modalidades de Logistica Contabilidad, Informatica', 123213412.32131234213 , 123123214.215344323213, 'Extendida','Tecnica', 1 );
-insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad) values ('20054', 'Liceo federico henriquez y carvajal', 'Dirección: Calle Cnel. Rafael Fernández Domínguez, Santo Domingo, Impartimos Informatica, Marketing y Contabilidad', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica', 1 );
+insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad, Premiun) values ('20051', 'Politecnico Max Henriquez Ureña', 'Desde el año 2000 estamos dando nuestro mejor servicio para ustedes en las modalidades de Logistica, Refrigeracion, Contabilidad, Informatica, Electricidad y Electronica', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica', 1 );
+insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad, Premiun) values ('20052', 'Liceo Juan Ramon Nuñez Castillo', 'Desde el año 2012 estamos dando nuestro mejor servicio para ustedes en los cursos de 1ro, 2do, 3ro, 4to, 5to, 6to ', 123213412.321 , 123123214.213, 'Extendida','General', 1 );
+insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad, Premiun) values ('20053', 'Liceo Virgilio Casilla Minaya', 'Desde el año 2015 estamos dando nuestro mejor servicio para ustedes en las modalidades de Logistica Contabilidad, Informatica', 123213412.32131234213 , 123123214.215344323213, 'Extendida','Tecnica', 1 );
+insert into escuelas (Codigo_Escuelas, Nombre, Descripcion, latitude, longitude,Tanda ,Modalidad, Premiun) values ('20054', 'Liceo federico henriquez y carvajal', 'Dirección: Calle Cnel. Rafael Fernández Domínguez, Santo Domingo, Impartimos Informatica, Marketing y Contabilidad', 123213412.3213214213 , 123123214.213123213, 'Extendida','Tecnica', 1 );
 
 --Niveles
 INSERT INTO `cargo` (`Id_Cargo`, `Cargo`, `Nivel`) VALUES (NULL, 'Estudiante', '107');

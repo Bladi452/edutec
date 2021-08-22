@@ -14,6 +14,12 @@ async function renderGetProducts() {
     await ipcRenderer.invoke('getDene')
 }
 
+ipcRenderer.on('contadorDen', (event, results) => {
+    let template = `<h3> Total Solicitud: ${results} </h3>`
+
+    contador.innerHTML = template;
+    })
+
 ipcRenderer.on('solicitudesDene', (event, results) => {
     let template = ""
     const list = results
