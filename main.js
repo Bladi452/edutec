@@ -271,7 +271,7 @@ async function GetSolicitudDene() {
             console.log(error);
         }
         winHome.webContents.send('solicitudesDene', results)
-        winHome.webContents.send('contadorDen', results)
+        winHome.webContents.send('contadorDen', results.length)
     })
 }
 
