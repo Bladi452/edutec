@@ -24,8 +24,8 @@ ipcMain.on('envio', (event, id) => {
 
 function createWindow() {
     win = new BrowserWindow({
-        width: 1366,
-        height: 768,
+        width: 2366,
+        height: 868,
         webPreferences: {
             resizable: false,
             nodeIntegration: true,
@@ -41,8 +41,8 @@ function createWindow() {
 
 function createWindowHome() {
     winHome = new BrowserWindow({
-        width: 1336,
-        height: 768,
+        width: 2336,
+        height: 868,
         webPreferences: {
             enableRemoteModule: true,
             nodeIntegration: true,
