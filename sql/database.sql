@@ -163,7 +163,7 @@ CREATE TRIGGER upd_check AFTER UPDATE ON solicitud
 UPDATE usuario SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
 UPDATE curso_Escu SET Cupo = Cupo-1 WHERE ID_Curso = NEW.Id_Curso AND Codigo_Escuelas = NEW.Codigo_Escuelas;
 UPDATE cargo_seleccionar SET Codigo_Escuelas = NEW.Codigo_Escuelas WHERE Matricula = NEW.Matricula;
-INSERT INTO sala_usuario (Id_Sala, Matricula) VALUES ((SELECT id_Sala FROM sala WHERE Codigo_Escuelas = NEW.Codigo_Escuelas) , NEW.Matricula);
+INSERT INTO sala_usuario (Id_Sala, Matricula) VALUES ((SELECT id_Sala FROM sala WHERE Codigo_Escuelas = NEW.Codigo_Escuelas LIMIT 1) , NEW.Matricula);
        END IF;
    END
 
