@@ -9,7 +9,7 @@ create table usuario (
     Codigo_Escuelas INT,
     FOREIGN KEY (Codigo_Escuelas) REFERENCES escuelas(Codigo_Escuelas)
 )
-
+ALTER TABLE `usuario` CHANGE `Matricula` `Matricula` INT(11) NOT NULL AUTO_INCREMENT;
 create table escuelas(
     Codigo_Escuelas INT AUTO_INCREMENT PRIMARY KEY,
     Foto VARCHAR (300),
@@ -225,7 +225,7 @@ insert into curso_Escu (Tanda, Cupo, ID_Curso, Codigo_Escuelas, Matricula) value
 
 
 --User--
-INSERT INTO `usuario` (`Matricula`, `Foto`, `Pass`, `Nombre`, `Apellido`, `Correo`, `Fecha_Nacimiento`, `Codigo_Escuelas`) VALUES ('20211015', NULL, '$2a$10$BgCEZop1Wmqa/Il7RSIJ2Ousb6nVVf.3xcJ8PqOQgr.QUV8HJ2XDK', 'Bladimir', 'Cleto Diaz', 'cleto662@gmail.com', '2002102', '20051');
+INSERT INTO `usuario` (`Matricula`, `Foto`, `Pass`, `Nombre`, `Apellido`, `Correo`, `Fecha_Nacimiento`, `Codigo_Escuelas`) VALUES ('20211015', NULL, '$2a$10$BgCEZop1Wmqa/Il7RSIJ2Ousb6nVVf.3xcJ8PqOQgr.QUV8HJ2XDK', 'Bladimir', 'Cleto Diaz', 'cleto662@gmail.com', '2002102', Null);
 INSERT INTO `usuario` (`Matricula`, `Foto`, `Pass`, `Nombre`, `Apellido`, `Correo`, `Fecha_Nacimiento`, `Codigo_Escuelas`) VALUES ('20211016', NULL, '$2a$10$BgCEZop1Wmqa/Il7RSIJ2Ousb6nVVf.3xcJ8PqOQgr.QUV8HJ2XDK', 'Daniel', 'Perez Jerez', 'dpg@gmail.com', '2021-02-01', '20051');
 
 --cargo seleccionar--
