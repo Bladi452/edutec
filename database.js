@@ -2,9 +2,9 @@ const mysql = require('promise-mysql');
 
 const conexion = mysql.createConnection({
     host:'localhost',
-    user: 'root',
-    password: '',
-    database: 'edutec'
+    user: 'tecnodi1_conforpasrl',
+    password: 'Df(I-i_iP1))',
+    database: 'tecnodi1_conforpra'
 })
 
 function getconexion(){

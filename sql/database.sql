@@ -13,12 +13,12 @@ ALTER TABLE `usuario` CHANGE `Matricula` `Matricula` INT(11) NOT NULL AUTO_INCRE
 create table escuelas(
     Codigo_Escuelas INT AUTO_INCREMENT PRIMARY KEY,
     Foto VARCHAR (300),
-    Nombre VARCHAR (200),
-    Descripcion VARCHAR(1000),
+    Nombre VARCHAR (200), 2 clc d mda, 4t 6t
+    Descripcion VARCHAR(1000), 2017
     latitude DECIMAL (19,4),
     longitude DECIMAL (19,4),
-    Tanda VARCHAR (200),
-    Modalidad VARCHAR (200),
+    Tanda VARCHAR (200), mat vs
+    Modalidad VARCHAR (200), acadmca
     Premiun INT
 )
 
